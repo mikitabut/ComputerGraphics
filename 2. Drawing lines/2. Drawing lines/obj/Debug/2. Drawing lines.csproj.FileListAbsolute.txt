@@ -1,0 +1,9 @@
+c:\users\user\documents\visual studio 2017\Projects\2. Drawing lines\2. Drawing lines\bin\Debug\_2.Drawing_lines.exe.config
+c:\users\user\documents\visual studio 2017\Projects\2. Drawing lines\2. Drawing lines\bin\Debug\_2.Drawing_lines.exe
+c:\users\user\documents\visual studio 2017\Projects\2. Drawing lines\2. Drawing lines\bin\Debug\_2.Drawing_lines.pdb
+c:\users\user\documents\visual studio 2017\Projects\2. Drawing lines\2. Drawing lines\obj\Debug\2. Drawing lines.csprojResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2017\Projects\2. Drawing lines\2. Drawing lines\obj\Debug\_2.Drawing_lines.Properties.Resources.resources
+c:\users\user\documents\visual studio 2017\Projects\2. Drawing lines\2. Drawing lines\obj\Debug\2. Drawing lines.csproj.GenerateResource.Cache
+c:\users\user\documents\visual studio 2017\Projects\2. Drawing lines\2. Drawing lines\obj\Debug\_2.Drawing_lines.exe
+c:\users\user\documents\visual studio 2017\Projects\2. Drawing lines\2. Drawing lines\obj\Debug\_2.Drawing_lines.pdb
+c:\users\user\documents\visual studio 2017\Projects\2. Drawing lines\2. Drawing lines\obj\Debug\_2.Drawing_lines.DrawingLines.resources

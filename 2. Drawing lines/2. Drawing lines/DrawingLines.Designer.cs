@@ -208,7 +208,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSecondY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSecondX)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion

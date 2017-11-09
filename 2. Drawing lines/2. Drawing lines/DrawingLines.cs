@@ -8,7 +8,7 @@ namespace _2.Drawing_lines
     public partial class DrawingLines : Form
     {
         #region Initialization
-        public const int CellSize = 50;
+        public const int CellSize = 30;
         public int panelWidth;
         public int panelHeight;
         Point center;
@@ -64,31 +64,19 @@ namespace _2.Drawing_lines
             return new Point(secondX, secondY);
         }
 
-        private void DrawLine(Point first, Point second)
-        {
-            int firstX = Convert.ToInt32(numericUpDownFirstX.Value);
-            int firstY = Convert.ToInt32(numericUpDownFirstY.Value);
-            int secondX = Convert.ToInt32(numericUpDownSecondX.Value);
-            int secondY = Convert.ToInt32(numericUpDownSecondY.Value);
-            Point center = new Point(panelWidth / 2, panelHeight / 2);
-            Point firstPoint = new Point(center.X + firstX * CellSize, center.Y - firstY * CellSize);
-            Point secondPoint = new Point(center.X + secondX * CellSize, center.Y - secondY * CellSize);
-            g.DrawLine(thinRed, firstPoint, secondPoint);
-        }
-
-        private void FillPixels(Point first, Point second)
+        private void FillPixels(Point start, Point finish)
         {
             double error = -0.5;
-            double k = ((double)(second.Y - first.Y) / (second.X - first.X));
-            int dx = Math.Abs(second.X - first.X);
-            int dy = Math.Abs(second.Y - first.Y);
-            int stepX = Math.Sign(second.X - first.X);
-            int stepY = Math.Sign(second.Y - first.Y);
-            int x = first.X;
-            int y = first.Y;
+            double k = ((double)(finish.Y - start.Y) / (finish.X - start.X));
+            int dx = Math.Abs(finish.X - start.X);
+            int dy = Math.Abs(finish.Y - start.Y);
+            int stepX = Math.Sign(finish.X - start.X);
+            int stepY = Math.Sign(finish.Y - start.Y);
+            int x = start.X;
+            int y = start.Y;
             if (dy > dx) k = 1 / k;
-            FillPixel(first);
-            DrawLine(first, second);
+            FillPixel(start);
+            DrawLine(start, finish);
             for (int i = 1; i <= Math.Max(dx, dy); i++)
             {
                 error += Math.Abs(k);
@@ -110,11 +98,17 @@ namespace _2.Drawing_lines
                         error--;
                     }
                 }
-
                 Thread.Sleep(1000);
                 FillPixel(new Point(x, y));
-                DrawLine(first, second);
+                DrawLine(start, finish);
             }
+        }
+
+        private void DrawLine(Point start, Point finish)
+        {
+            Point firstPixel = new Point(center.X + start.X * CellSize, center.Y - start.Y * CellSize);
+            Point secondPixel = new Point(center.X + finish.X * CellSize, center.Y - finish.Y * CellSize);
+            g.DrawLine(thinRed, firstPixel, secondPixel);
         }
 
         private void FillPixel(Point point)

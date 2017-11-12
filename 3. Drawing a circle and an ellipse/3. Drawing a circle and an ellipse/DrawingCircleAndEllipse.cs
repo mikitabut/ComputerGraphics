@@ -9,7 +9,7 @@ namespace _3.Drawing_a_circle_and_an_ellipse
     public partial class DrawingCircleAndEllipse : Form
     {
         #region Initialization
-        public const int CellSize = 30;
+        public const int CellSize = 10;
         public int panelWidth;
         public int panelHeight;
         Point center;
@@ -114,7 +114,7 @@ namespace _3.Drawing_a_circle_and_an_ellipse
 
         private void DrawPixel(Point point)
         {
-            Thread.Sleep(500);
+            Thread.Sleep(100);
             FillPixel(point.X, point.Y);
             DrawRealCircle();
         }
@@ -139,6 +139,23 @@ namespace _3.Drawing_a_circle_and_an_ellipse
             int left = (int)(center.X + (point.X - 0.5) * CellSize);
             int top = (int)(center.Y - (point.Y + 0.5) * CellSize);
             g.FillRectangle(blackBrush, left, top, CellSize, CellSize);
+        }
+
+        private void DrawingCircleAndEllipse_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedValue.ToString() == "Ellipse")
+            {
+                panelEllipse.BringToFront();
+            }
+            if (comboBox1.SelectedValue.ToString() == "Circle")
+            {
+                panelCircle.BringToFront();
+            }
         }
     }
 }

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _3.Drawing_a_circle_and_an_ellipse
@@ -57,19 +51,12 @@ namespace _3.Drawing_a_circle_and_an_ellipse
 
         private void FillPixels(int radius)
         {
-            g.DrawEllipse(thinRed, center.X + (0 - radius) * CellSize, center.Y + (0 - radius) * CellSize, 2 * radius * CellSize, 2 * radius * CellSize);
+            DrawCircle(radius);
         }
 
         private void DrawCircle(int radius)
         {
-            //int firstX = Convert.ToInt32(numericUpDownFirstX.Value);
-            //int firstY = Convert.ToInt32(numericUpDownFirstY.Value);
-            //int secondX = Convert.ToInt32(numericUpDownSecondX.Value);
-            //int secondY = Convert.ToInt32(numericUpDownSecondY.Value);
-            //Point center = new Point(panelWidth / 2, panelHeight / 2);
-            //Point firstPoint = new Point(center.X + firstX * CellSize, center.Y - firstY * CellSize);
-            //Point secondPoint = new Point(center.X + secondX * CellSize, center.Y - secondY * CellSize);
-            //g.DrawLine(thinRed, firstPoint, secondPoint);
+            g.DrawEllipse(thinRed, center.X + (0 - radius) * CellSize, center.Y + (0 - radius) * CellSize, 2 * radius * CellSize, 2 * radius * CellSize);
         }
 
         private void buttonDrawEllipse_Click(object sender, EventArgs e)

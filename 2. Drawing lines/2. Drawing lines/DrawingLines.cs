@@ -47,7 +47,7 @@ namespace _2.Drawing_lines
             panel.Refresh();
             Point first = GetFirstPoint();
             Point second = GetSecondPoint();
-            FillPixels(first, second);
+            DrawLineByBresenhamAlgorithm(first, second);
         }
 
         private Point GetFirstPoint()
@@ -64,7 +64,7 @@ namespace _2.Drawing_lines
             return new Point(secondX, secondY);
         }
 
-        private void FillPixels(Point start, Point finish)
+        private void DrawLineByBresenhamAlgorithm(Point start, Point finish)
         {
             double error = -0.5;
             double k = ((double)(finish.Y - start.Y) / (finish.X - start.X));
@@ -74,9 +74,12 @@ namespace _2.Drawing_lines
             int stepY = Math.Sign(finish.Y - start.Y);
             int x = start.X;
             int y = start.Y;
-            if (dy > dx) k = 1 / k;
+            if (dy > dx)
+            {
+                k = 1 / k;
+            }
             FillPixel(start);
-            DrawLine(start, finish);
+            DrawRealLine(start, finish);
             for (int i = 1; i <= Math.Max(dx, dy); i++)
             {
                 error += Math.Abs(k);
@@ -100,11 +103,11 @@ namespace _2.Drawing_lines
                 }
                 Thread.Sleep(1000);
                 FillPixel(new Point(x, y));
-                DrawLine(start, finish);
+                DrawRealLine(start, finish);
             }
         }
 
-        private void DrawLine(Point start, Point finish)
+        private void DrawRealLine(Point start, Point finish)
         {
             Point firstPixel = new Point(center.X + start.X * CellSize, center.Y - start.Y * CellSize);
             Point secondPixel = new Point(center.X + finish.X * CellSize, center.Y - finish.Y * CellSize);

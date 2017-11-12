@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace _3.Drawing_a_circle_and_an_ellipse
@@ -16,6 +18,8 @@ namespace _3.Drawing_a_circle_and_an_ellipse
         Pen thickBlack = new Pen(Color.Black, 4);
         Pen thinRed = new Pen(Color.Red, 2);
         SolidBrush blackBrush = new SolidBrush(Color.Gray);
+        int radius;
+        #endregion
 
         public DrawingCircleAndEllipse()
         {
@@ -24,9 +28,7 @@ namespace _3.Drawing_a_circle_and_an_ellipse
             panelHeight = panel.Height; //y
             center = new Point(panelWidth / 2, panelHeight / 2);
             g = panel.CreateGraphics();
-        }
-
-        #endregion
+        }     
 
         private void panel_Paint(object sender, PaintEventArgs e)
         {
@@ -45,16 +47,79 @@ namespace _3.Drawing_a_circle_and_an_ellipse
         private void buttonDrawCircle_Click(object sender, EventArgs e)
         {
             panel.Refresh();
-            int radius = Convert.ToInt32(numericUpDownRadius.Value);
-            FillPixels(radius);
+            radius = Convert.ToInt32(numericUpDownRadius.Value);
+            DrawExtemePoints();
+            DrawCircleByBresenhamAlgorithm();
         }
 
-        private void FillPixels(int radius)
+        private void DrawExtemePoints()
         {
-            DrawCircle(radius);
+            DrawPixel(0, radius);
+            DrawPixel(radius, 0);
+            DrawPixel(0, -radius);
+            DrawPixel(-radius, 0);
         }
 
-        private void DrawCircle(int radius)
+        private void DrawCircleByBresenhamAlgorithm()
+        {
+            #region Initialization
+            var points = new List<Point>();
+            int x = 0;
+            int y = radius;
+            int d = 3 - 2 * radius;
+            int u = 6;
+            int v = 10 - 4 * radius;
+            #endregion
+            while (v < 10)
+            {
+                if (d < 0)
+                {
+                    d += u;
+                    u += 4;
+                    v += 4;
+                    x++;
+                }
+                else
+                {
+                    d += v;
+                    u += 4;
+                    v += 8;
+                    x++;
+                    y--;
+                }
+                points.Add(new Point(x, y));
+                DrawPixel(x, y);
+            }
+            DrawSymmetricPoints(points);
+        }
+
+        private void DrawSymmetricPoints(List<Point> points)
+        {
+            foreach (var point in points)
+            {
+                DrawPixel(point.Y, point.X);
+                DrawPixel(point.Y, -point.X);
+                DrawPixel(point.X, -point.Y);
+                DrawPixel(-point.X, -point.Y);
+                DrawPixel(-point.Y, -point.X);
+                DrawPixel(-point.Y, point.X);
+                DrawPixel(-point.X, point.Y);
+            }
+        }
+
+        private void DrawPixel(int x, int y)
+        {
+            DrawPixel(new Point(x, y));
+        }
+
+        private void DrawPixel(Point point)
+        {
+            Thread.Sleep(500);
+            FillPixel(point.X, point.Y);
+            DrawRealCircle();
+        }
+
+        private void DrawRealCircle()
         {
             g.DrawEllipse(thinRed, center.X + (0 - radius) * CellSize, center.Y + (0 - radius) * CellSize, 2 * radius * CellSize, 2 * radius * CellSize);
         }
@@ -62,6 +127,11 @@ namespace _3.Drawing_a_circle_and_an_ellipse
         private void buttonDrawEllipse_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FillPixel(int x, int y)
+        {
+            FillPixel(new Point(x, y));
         }
 
         private void FillPixel(Point point)

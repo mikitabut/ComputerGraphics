@@ -4,9 +4,9 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace _3.Drawing_a_circle_and_an_ellipse
+namespace ComputerGraphics
 {
-    public partial class DrawingCircleAndEllipse : Form
+    public partial class ComputerGraphics : Form
     {
         #region Initialization
         public const int CellSize = 15;
@@ -21,7 +21,7 @@ namespace _3.Drawing_a_circle_and_an_ellipse
         int radius;
         #endregion
 
-        public DrawingCircleAndEllipse()
+        public ComputerGraphics()
         {
             InitializeComponent();
             panelWidth = panel.Width; //x

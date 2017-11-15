@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace _3.Drawing_a_circle_and_an_ellipse
+namespace ComputerGraphics
 {
-    partial class DrawingCircleAndEllipse
+    partial class ComputerGraphics
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -529,7 +529,7 @@ namespace _3.Drawing_a_circle_and_an_ellipse
             this.tabPage14.Text = "15";
             this.tabPage14.UseVisualStyleBackColor = true;
             // 
-            // DrawingCircleAndEllipse
+            // ComputerGraphics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -539,9 +539,9 @@ namespace _3.Drawing_a_circle_and_an_ellipse
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1116, 638);
             this.MinimumSize = new System.Drawing.Size(1116, 638);
-            this.Name = "DrawingCircleAndEllipse";
+            this.Name = "ComputerGraphics";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Drawing a circle and an ellipse";
+            this.Text = "Computer graphics";
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

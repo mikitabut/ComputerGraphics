@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _3.Drawing_a_circle_and_an_ellipse
+namespace ComputerGraphics
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace _3.Drawing_a_circle_and_an_ellipse
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DrawingCircleAndEllipse());
+            Application.Run(new ComputerGraphics());
         }
     }
 }

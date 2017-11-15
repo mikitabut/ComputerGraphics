@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace _3.Drawing_a_circle_and_an_ellipse.Properties
+namespace ComputerGraphics.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace _3.Drawing_a_circle_and_an_ellipse.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("_3.Drawing_a_circle_and_an_ellipse.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ComputerGraphics.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

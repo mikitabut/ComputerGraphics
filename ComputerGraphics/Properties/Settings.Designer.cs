@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace _3.Drawing_a_circle_and_an_ellipse.Properties
+namespace ComputerGraphics.Properties
 {
 
 

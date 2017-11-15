@@ -1,9 +1,8 @@
-C:\Users\User\Documents\Visual Studio 2017\Projects\Computer-graphics\3. Drawing a circle and an ellipse\3. Drawing a circle and an ellipse\obj\Debug\ComputerGraphics.csprojResolveAssemblyReference.cache
-C:\Users\User\Documents\Visual Studio 2017\Projects\Computer-graphics\3. Drawing a circle and an ellipse\3. Drawing a circle and an ellipse\obj\Debug\ComputerGraphics.ComputerGraphics.resources
-C:\Users\User\Documents\Visual Studio 2017\Projects\Computer-graphics\3. Drawing a circle and an ellipse\3. Drawing a circle and an ellipse\obj\Debug\_3.Drawing_a_circle_and_an_ellipse.Properties.Resources.resources
-C:\Users\User\Documents\Visual Studio 2017\Projects\Computer-graphics\3. Drawing a circle and an ellipse\3. Drawing a circle and an ellipse\obj\Debug\ComputerGraphics.csproj.GenerateResource.Cache
-C:\Users\User\Documents\Visual Studio 2017\Projects\Computer-graphics\3. Drawing a circle and an ellipse\3. Drawing a circle and an ellipse\obj\Debug\_3.Drawing_a_circle_and_an_ellipse.exe
-C:\Users\User\Documents\Visual Studio 2017\Projects\Computer-graphics\3. Drawing a circle and an ellipse\3. Drawing a circle and an ellipse\obj\Debug\_3.Drawing_a_circle_and_an_ellipse.pdb
-C:\Users\User\Documents\Visual Studio 2017\Projects\Computer-graphics\3. Drawing a circle and an ellipse\3. Drawing a circle and an ellipse\bin\Debug\_3.Drawing_a_circle_and_an_ellipse.exe.config
-C:\Users\User\Documents\Visual Studio 2017\Projects\Computer-graphics\3. Drawing a circle and an ellipse\3. Drawing a circle and an ellipse\bin\Debug\_3.Drawing_a_circle_and_an_ellipse.exe
-C:\Users\User\Documents\Visual Studio 2017\Projects\Computer-graphics\3. Drawing a circle and an ellipse\3. Drawing a circle and an ellipse\bin\Debug\_3.Drawing_a_circle_and_an_ellipse.pdb
+C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\obj\Debug\ComputerGraphics.ComputerGraphics.resources
+C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\obj\Debug\ComputerGraphics.Properties.Resources.resources
+C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\obj\Debug\ComputerGraphics.csproj.GenerateResource.Cache
+C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\obj\Debug\ComputerGraphics.exe
+C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\obj\Debug\ComputerGraphics.pdb
+C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\bin\Debug\ComputerGraphics.exe.config
+C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\bin\Debug\ComputerGraphics.exe
+C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\bin\Debug\ComputerGraphics.pdb

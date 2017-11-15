@@ -32,9 +32,22 @@ namespace _3.Drawing_a_circle_and_an_ellipse
         private void InitializeComponent()
         {
             this.panel = new System.Windows.Forms.Panel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.buttonDraw = new System.Windows.Forms.Button();
+            this.groupBoxSecondPoint = new System.Windows.Forms.GroupBox();
+            this.numericUpDownSecondY = new System.Windows.Forms.NumericUpDown();
+            this.labelSecondY = new System.Windows.Forms.Label();
+            this.numericUpDownSecondX = new System.Windows.Forms.NumericUpDown();
+            this.labelSecondX = new System.Windows.Forms.Label();
+            this.groupBoxFirstPoint = new System.Windows.Forms.GroupBox();
+            this.numericUpDownFirstY = new System.Windows.Forms.NumericUpDown();
+            this.labelFirstY = new System.Windows.Forms.Label();
+            this.numericUpDownFirstX = new System.Windows.Forms.NumericUpDown();
+            this.labelFirstX = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBoxEllipse = new System.Windows.Forms.GroupBox();
             this.buttonDrawEllipse = new System.Windows.Forms.Button();
             this.numericUpDownB = new System.Windows.Forms.NumericUpDown();
@@ -57,8 +70,14 @@ namespace _3.Drawing_a_circle_and_an_ellipse
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.tabPage13 = new System.Windows.Forms.TabPage();
             this.tabPage14 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBoxSecondPoint.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSecondY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSecondX)).BeginInit();
+            this.groupBoxFirstPoint.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFirstY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFirstX)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBoxEllipse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownB)).BeginInit();
@@ -76,34 +95,38 @@ namespace _3.Drawing_a_circle_and_an_ellipse
             this.panel.TabIndex = 0;
             this.panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Controls.Add(this.tabPage9);
-            this.tabControl1.Controls.Add(this.tabPage10);
-            this.tabControl1.Controls.Add(this.tabPage11);
-            this.tabControl1.Controls.Add(this.tabPage12);
-            this.tabControl1.Controls.Add(this.tabPage13);
-            this.tabControl1.Controls.Add(this.tabPage14);
-            this.tabControl1.ItemSize = new System.Drawing.Size(26, 18);
-            this.tabControl1.Location = new System.Drawing.Point(902, 1);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(1);
-            this.tabControl1.Multiline = true;
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(195, 426);
-            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl1.TabIndex = 11;
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Controls.Add(this.tabPage4);
+            this.tabControl.Controls.Add(this.tabPage5);
+            this.tabControl.Controls.Add(this.tabPage6);
+            this.tabControl.Controls.Add(this.tabPage7);
+            this.tabControl.Controls.Add(this.tabPage8);
+            this.tabControl.Controls.Add(this.tabPage9);
+            this.tabControl.Controls.Add(this.tabPage10);
+            this.tabControl.Controls.Add(this.tabPage11);
+            this.tabControl.Controls.Add(this.tabPage12);
+            this.tabControl.Controls.Add(this.tabPage13);
+            this.tabControl.Controls.Add(this.tabPage14);
+            this.tabControl.ItemSize = new System.Drawing.Size(26, 18);
+            this.tabControl.Location = new System.Drawing.Point(902, 1);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(1);
+            this.tabControl.Multiline = true;
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(195, 426);
+            this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl.TabIndex = 11;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.buttonDraw);
+            this.tabPage1.Controls.Add(this.groupBoxSecondPoint);
+            this.tabPage1.Controls.Add(this.groupBoxFirstPoint);
+            this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Location = new System.Drawing.Point(4, 40);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -112,9 +135,145 @@ namespace _3.Drawing_a_circle_and_an_ellipse
             this.tabPage1.Text = "2";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // buttonDraw
+            // 
+            this.buttonDraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDraw.Location = new System.Drawing.Point(54, 306);
+            this.buttonDraw.Name = "buttonDraw";
+            this.buttonDraw.Size = new System.Drawing.Size(87, 31);
+            this.buttonDraw.TabIndex = 12;
+            this.buttonDraw.Text = "Draw";
+            this.buttonDraw.UseVisualStyleBackColor = true;
+            this.buttonDraw.Click += new System.EventHandler(this.buttonDraw_Click);
+            // 
+            // groupBoxSecondPoint
+            // 
+            this.groupBoxSecondPoint.Controls.Add(this.numericUpDownSecondY);
+            this.groupBoxSecondPoint.Controls.Add(this.labelSecondY);
+            this.groupBoxSecondPoint.Controls.Add(this.numericUpDownSecondX);
+            this.groupBoxSecondPoint.Controls.Add(this.labelSecondX);
+            this.groupBoxSecondPoint.Location = new System.Drawing.Point(14, 175);
+            this.groupBoxSecondPoint.Margin = new System.Windows.Forms.Padding(25);
+            this.groupBoxSecondPoint.Name = "groupBoxSecondPoint";
+            this.groupBoxSecondPoint.Size = new System.Drawing.Size(148, 103);
+            this.groupBoxSecondPoint.TabIndex = 11;
+            this.groupBoxSecondPoint.TabStop = false;
+            this.groupBoxSecondPoint.Text = "Second point";
+            // 
+            // numericUpDownSecondY
+            // 
+            this.numericUpDownSecondY.Location = new System.Drawing.Point(55, 66);
+            this.numericUpDownSecondY.Margin = new System.Windows.Forms.Padding(10);
+            this.numericUpDownSecondY.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownSecondY.Name = "numericUpDownSecondY";
+            this.numericUpDownSecondY.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDownSecondY.TabIndex = 2;
+            // 
+            // labelSecondY
+            // 
+            this.labelSecondY.AutoSize = true;
+            this.labelSecondY.Location = new System.Drawing.Point(19, 68);
+            this.labelSecondY.Name = "labelSecondY";
+            this.labelSecondY.Size = new System.Drawing.Size(23, 13);
+            this.labelSecondY.TabIndex = 5;
+            this.labelSecondY.Text = "Y : ";
+            // 
+            // numericUpDownSecondX
+            // 
+            this.numericUpDownSecondX.Location = new System.Drawing.Point(55, 26);
+            this.numericUpDownSecondX.Margin = new System.Windows.Forms.Padding(10);
+            this.numericUpDownSecondX.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownSecondX.Name = "numericUpDownSecondX";
+            this.numericUpDownSecondX.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDownSecondX.TabIndex = 1;
+            // 
+            // labelSecondX
+            // 
+            this.labelSecondX.AutoSize = true;
+            this.labelSecondX.Location = new System.Drawing.Point(19, 28);
+            this.labelSecondX.Name = "labelSecondX";
+            this.labelSecondX.Size = new System.Drawing.Size(23, 13);
+            this.labelSecondX.TabIndex = 4;
+            this.labelSecondX.Text = "X : ";
+            // 
+            // groupBoxFirstPoint
+            // 
+            this.groupBoxFirstPoint.Controls.Add(this.numericUpDownFirstY);
+            this.groupBoxFirstPoint.Controls.Add(this.labelFirstY);
+            this.groupBoxFirstPoint.Controls.Add(this.numericUpDownFirstX);
+            this.groupBoxFirstPoint.Controls.Add(this.labelFirstX);
+            this.groupBoxFirstPoint.Location = new System.Drawing.Point(14, 54);
+            this.groupBoxFirstPoint.Margin = new System.Windows.Forms.Padding(25);
+            this.groupBoxFirstPoint.Name = "groupBoxFirstPoint";
+            this.groupBoxFirstPoint.Size = new System.Drawing.Size(148, 103);
+            this.groupBoxFirstPoint.TabIndex = 10;
+            this.groupBoxFirstPoint.TabStop = false;
+            this.groupBoxFirstPoint.Text = "First point";
+            // 
+            // numericUpDownFirstY
+            // 
+            this.numericUpDownFirstY.Location = new System.Drawing.Point(55, 66);
+            this.numericUpDownFirstY.Margin = new System.Windows.Forms.Padding(10);
+            this.numericUpDownFirstY.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownFirstY.Name = "numericUpDownFirstY";
+            this.numericUpDownFirstY.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDownFirstY.TabIndex = 2;
+            // 
+            // labelFirstY
+            // 
+            this.labelFirstY.AutoSize = true;
+            this.labelFirstY.Location = new System.Drawing.Point(19, 68);
+            this.labelFirstY.Name = "labelFirstY";
+            this.labelFirstY.Size = new System.Drawing.Size(23, 13);
+            this.labelFirstY.TabIndex = 5;
+            this.labelFirstY.Text = "Y : ";
+            // 
+            // numericUpDownFirstX
+            // 
+            this.numericUpDownFirstX.Location = new System.Drawing.Point(55, 26);
+            this.numericUpDownFirstX.Margin = new System.Windows.Forms.Padding(10);
+            this.numericUpDownFirstX.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownFirstX.Name = "numericUpDownFirstX";
+            this.numericUpDownFirstX.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDownFirstX.TabIndex = 1;
+            // 
+            // labelFirstX
+            // 
+            this.labelFirstX.AutoSize = true;
+            this.labelFirstX.Location = new System.Drawing.Point(19, 28);
+            this.labelFirstX.Name = "labelFirstX";
+            this.labelFirstX.Size = new System.Drawing.Size(23, 13);
+            this.labelFirstX.TabIndex = 4;
+            this.labelFirstX.Text = "X : ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(51, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Drawing lines";
+            // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.groupBoxEllipse);
             this.tabPage2.Controls.Add(this.groupBoxCircle);
             this.tabPage2.Location = new System.Drawing.Point(4, 40);
@@ -124,6 +283,15 @@ namespace _3.Drawing_a_circle_and_an_ellipse
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "3";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(151, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Drawing a circle and an ellipse";
             // 
             // groupBoxEllipse
             // 
@@ -361,21 +529,12 @@ namespace _3.Drawing_a_circle_and_an_ellipse
             this.tabPage14.Text = "15";
             this.tabPage14.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(71, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "label1";
-            // 
             // DrawingCircleAndEllipse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 600);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1116, 638);
@@ -383,7 +542,17 @@ namespace _3.Drawing_a_circle_and_an_ellipse
             this.Name = "DrawingCircleAndEllipse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Drawing a circle and an ellipse";
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.groupBoxSecondPoint.ResumeLayout(false);
+            this.groupBoxSecondPoint.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSecondY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSecondX)).EndInit();
+            this.groupBoxFirstPoint.ResumeLayout(false);
+            this.groupBoxFirstPoint.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFirstY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFirstX)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBoxEllipse.ResumeLayout(false);
@@ -410,7 +579,7 @@ namespace _3.Drawing_a_circle_and_an_ellipse
         private Label labelA;
         private Button buttonDrawCircle;
         private Button buttonDrawEllipse;
-        private TabControl tabControl1;
+        private TabControl tabControl;
         private TabPage tabPage1;
         private TabPage tabPage2;
         private TabPage tabPage3;
@@ -425,6 +594,18 @@ namespace _3.Drawing_a_circle_and_an_ellipse
         private TabPage tabPage12;
         private TabPage tabPage13;
         private TabPage tabPage14;
-        private Label label1;
+        private Label label3;
+        private Label label2;
+        private GroupBox groupBoxFirstPoint;
+        private NumericUpDown numericUpDownFirstY;
+        private Label labelFirstY;
+        private NumericUpDown numericUpDownFirstX;
+        private Label labelFirstX;
+        private GroupBox groupBoxSecondPoint;
+        private NumericUpDown numericUpDownSecondY;
+        private Label labelSecondY;
+        private NumericUpDown numericUpDownSecondX;
+        private Label labelSecondX;
+        private Button buttonDraw;
     }
 }

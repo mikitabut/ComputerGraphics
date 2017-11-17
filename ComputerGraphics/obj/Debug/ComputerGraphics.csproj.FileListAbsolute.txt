@@ -6,4 +6,3 @@ C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGra
 C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\bin\Debug\ComputerGraphics.exe.config
 C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\bin\Debug\ComputerGraphics.exe
 C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\bin\Debug\ComputerGraphics.pdb
-C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\obj\Debug\ComputerGraphics.csprojResolveAssemblyReference.cache

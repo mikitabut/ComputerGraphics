@@ -34,7 +34,7 @@ namespace ComputerGraphics
             this.panel = new System.Windows.Forms.Panel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.buttonDraw = new System.Windows.Forms.Button();
+            this.buttonDrawLine = new System.Windows.Forms.Button();
             this.groupBoxSecondPoint = new System.Windows.Forms.GroupBox();
             this.numericUpDownSecondY = new System.Windows.Forms.NumericUpDown();
             this.labelSecondY = new System.Windows.Forms.Label();
@@ -123,7 +123,7 @@ namespace ComputerGraphics
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.buttonDraw);
+            this.tabPage1.Controls.Add(this.buttonDrawLine);
             this.tabPage1.Controls.Add(this.groupBoxSecondPoint);
             this.tabPage1.Controls.Add(this.groupBoxFirstPoint);
             this.tabPage1.Controls.Add(this.label2);
@@ -135,16 +135,16 @@ namespace ComputerGraphics
             this.tabPage1.Text = "2";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // buttonDraw
+            // buttonDrawLine
             // 
-            this.buttonDraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDraw.Location = new System.Drawing.Point(54, 306);
-            this.buttonDraw.Name = "buttonDraw";
-            this.buttonDraw.Size = new System.Drawing.Size(87, 31);
-            this.buttonDraw.TabIndex = 12;
-            this.buttonDraw.Text = "Draw";
-            this.buttonDraw.UseVisualStyleBackColor = true;
-            this.buttonDraw.Click += new System.EventHandler(this.buttonDraw_Click);
+            this.buttonDrawLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDrawLine.Location = new System.Drawing.Point(54, 306);
+            this.buttonDrawLine.Name = "buttonDrawLine";
+            this.buttonDrawLine.Size = new System.Drawing.Size(87, 31);
+            this.buttonDrawLine.TabIndex = 12;
+            this.buttonDrawLine.Text = "Draw line";
+            this.buttonDrawLine.UseVisualStyleBackColor = true;
+            this.buttonDrawLine.Click += new System.EventHandler(this.buttonDrawLine_Click);
             // 
             // groupBoxSecondPoint
             // 
@@ -606,6 +606,6 @@ namespace ComputerGraphics
         private Label labelSecondY;
         private NumericUpDown numericUpDownSecondX;
         private Label labelSecondX;
-        private Button buttonDraw;
+        private Button buttonDrawLine;
     }
 }

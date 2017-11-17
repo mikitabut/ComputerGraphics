@@ -148,7 +148,8 @@ namespace ComputerGraphics
             int u = 6;
             int v = 10 - 4 * radius;
             #endregion
-            DrawExtemePoints();
+
+            DrawCircleExtemePoints();
             while(v < 10)
             {
                 if(d < 0)
@@ -169,10 +170,10 @@ namespace ComputerGraphics
                 points.Add(new Point(x, y));
                 DrawPixelUnderCircle(x, y);
             }
-            DrawSymmetricPoints(points);
+            DrawCircleSymmetricPoints(points);
         }
 
-        private void DrawExtemePoints()
+        private void DrawCircleExtemePoints()
         {
             DrawPixelUnderCircle(0, radius);
             DrawPixelUnderCircle(radius, 0);
@@ -180,7 +181,7 @@ namespace ComputerGraphics
             DrawPixelUnderCircle(-radius, 0);
         }
 
-        private void DrawSymmetricPoints(List<Point> points)
+        private void DrawCircleSymmetricPoints(List<Point> points)
         {
             foreach (var point in points)
             {
@@ -229,7 +230,7 @@ namespace ComputerGraphics
             int v = 12 * b * b + 8 * a * a * (1 - b);
             #endregion
 
-            DrawPixelUnderEllipse(x, y);
+            DrawEllipseExtemePoints();
             while(L > 0)
             {
                 if(d < 0)
@@ -256,10 +257,10 @@ namespace ComputerGraphics
             y = 0;
             d = 4 * b * b + a * a - 4 * a * b * b;
             L = a * b;
-            points.Add(new Point(x, y));
-            DrawPixelUnderEllipse(x, y);
-            while(L > 0)
+            do
             {
+                points.Add(new Point(x, y));
+                DrawPixelUnderEllipse(x, y);
                 if(d < 0)
                 {
                     d += u;
@@ -277,10 +278,27 @@ namespace ComputerGraphics
                     x--;
                     y++;
                 }
-                points.Add(new Point(x, y));
-                DrawPixelUnderEllipse(x, y);
             }
-            //DrawSymmetricPoints(points);
+            while(L > 0);
+            DrawEllipseSymmetricPoints(points);
+        }
+
+        private void DrawEllipseExtemePoints()
+        {
+            DrawPixelUnderEllipse(0, b);
+            DrawPixelUnderEllipse(a, 0);
+            DrawPixelUnderEllipse(0, -b);
+            DrawPixelUnderEllipse(-a, 0);
+        }
+
+        private void DrawEllipseSymmetricPoints(List<Point> points)
+        {
+            foreach(var point in points)
+            {
+                DrawPixelUnderEllipse(point.X, -point.Y);
+                DrawPixelUnderEllipse(-point.X, -point.Y);
+                DrawPixelUnderEllipse(-point.X, point.Y);
+            }
         }
 
         private void DrawPixelUnderEllipse(int x, int y)
@@ -294,8 +312,19 @@ namespace ComputerGraphics
             g.DrawEllipse(thinRed, center.X + (0 - a) * cellSize, center.Y + (0 - b) * cellSize, 2 * a * cellSize, 2 * b * cellSize);
         }
 
+        #endregion
 
         #endregion
+
+        #region Fourth task - Filling polygons
+
+
+
+        #endregion
+
+        #region Fifth task - Clipping
+
+
 
         #endregion
 

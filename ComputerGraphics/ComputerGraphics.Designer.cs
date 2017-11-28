@@ -59,8 +59,18 @@ namespace ComputerGraphics
             this.numericUpDownRadius = new System.Windows.Forms.NumericUpDown();
             this.labelRadius = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.buttonFill = new System.Windows.Forms.Button();
+            this.buttonAddPoint = new System.Windows.Forms.Button();
+            this.groupBoxAddingPoint = new System.Windows.Forms.GroupBox();
+            this.numericUpDownY = new System.Windows.Forms.NumericUpDown();
+            this.labelY = new System.Windows.Forms.Label();
+            this.numericUpDownX = new System.Windows.Forms.NumericUpDown();
+            this.labelX = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
@@ -70,6 +80,7 @@ namespace ComputerGraphics
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.tabPage13 = new System.Windows.Forms.TabPage();
             this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.buttonRefreshPanel = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBoxSecondPoint.SuspendLayout();
@@ -84,6 +95,12 @@ namespace ComputerGraphics
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownA)).BeginInit();
             this.groupBoxCircle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRadius)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.groupBoxAddingPoint.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel
@@ -411,6 +428,10 @@ namespace ComputerGraphics
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.buttonFill);
+            this.tabPage3.Controls.Add(this.buttonAddPoint);
+            this.tabPage3.Controls.Add(this.groupBoxAddingPoint);
+            this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Location = new System.Drawing.Point(4, 40);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -419,8 +440,96 @@ namespace ComputerGraphics
             this.tabPage3.Text = "4";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // buttonFill
+            // 
+            this.buttonFill.Location = new System.Drawing.Point(44, 259);
+            this.buttonFill.Name = "buttonFill";
+            this.buttonFill.Size = new System.Drawing.Size(113, 44);
+            this.buttonFill.TabIndex = 14;
+            this.buttonFill.Text = "Fill polygon";
+            this.buttonFill.UseVisualStyleBackColor = true;
+            this.buttonFill.Click += new System.EventHandler(this.buttonFill_Click);
+            // 
+            // buttonAddPoint
+            // 
+            this.buttonAddPoint.Location = new System.Drawing.Point(57, 182);
+            this.buttonAddPoint.Name = "buttonAddPoint";
+            this.buttonAddPoint.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddPoint.TabIndex = 13;
+            this.buttonAddPoint.Text = "Add point";
+            this.buttonAddPoint.UseVisualStyleBackColor = true;
+            this.buttonAddPoint.Click += new System.EventHandler(this.buttonAddPoint_Click);
+            // 
+            // groupBoxAddingPoint
+            // 
+            this.groupBoxAddingPoint.Controls.Add(this.numericUpDownY);
+            this.groupBoxAddingPoint.Controls.Add(this.labelY);
+            this.groupBoxAddingPoint.Controls.Add(this.numericUpDownX);
+            this.groupBoxAddingPoint.Controls.Add(this.labelX);
+            this.groupBoxAddingPoint.Location = new System.Drawing.Point(22, 51);
+            this.groupBoxAddingPoint.Margin = new System.Windows.Forms.Padding(25);
+            this.groupBoxAddingPoint.Name = "groupBoxAddingPoint";
+            this.groupBoxAddingPoint.Size = new System.Drawing.Size(148, 103);
+            this.groupBoxAddingPoint.TabIndex = 12;
+            this.groupBoxAddingPoint.TabStop = false;
+            this.groupBoxAddingPoint.Text = "New point";
+            // 
+            // numericUpDownY
+            // 
+            this.numericUpDownY.Location = new System.Drawing.Point(55, 66);
+            this.numericUpDownY.Margin = new System.Windows.Forms.Padding(10);
+            this.numericUpDownY.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownY.Name = "numericUpDownY";
+            this.numericUpDownY.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDownY.TabIndex = 2;
+            // 
+            // labelY
+            // 
+            this.labelY.AutoSize = true;
+            this.labelY.Location = new System.Drawing.Point(19, 68);
+            this.labelY.Name = "labelY";
+            this.labelY.Size = new System.Drawing.Size(23, 13);
+            this.labelY.TabIndex = 5;
+            this.labelY.Text = "Y : ";
+            // 
+            // numericUpDownX
+            // 
+            this.numericUpDownX.Location = new System.Drawing.Point(55, 26);
+            this.numericUpDownX.Margin = new System.Windows.Forms.Padding(10);
+            this.numericUpDownX.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownX.Name = "numericUpDownX";
+            this.numericUpDownX.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDownX.TabIndex = 1;
+            // 
+            // labelX
+            // 
+            this.labelX.AutoSize = true;
+            this.labelX.Location = new System.Drawing.Point(19, 28);
+            this.labelX.Name = "labelX";
+            this.labelX.Size = new System.Drawing.Size(23, 13);
+            this.labelX.TabIndex = 4;
+            this.labelX.Text = "X : ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(54, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Filling polygons";
+            // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label5);
             this.tabPage4.Location = new System.Drawing.Point(4, 40);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -429,8 +538,18 @@ namespace ComputerGraphics
             this.tabPage4.Text = "5";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(72, 15);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Clipping";
+            // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.label6);
             this.tabPage5.Location = new System.Drawing.Point(4, 40);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -438,6 +557,15 @@ namespace ComputerGraphics
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "6";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(16, 14);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(151, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Drawing a circle and an ellipse";
             // 
             // tabPage6
             // 
@@ -529,11 +657,22 @@ namespace ComputerGraphics
             this.tabPage14.Text = "15";
             this.tabPage14.UseVisualStyleBackColor = true;
             // 
+            // buttonRefreshPanel
+            // 
+            this.buttonRefreshPanel.Location = new System.Drawing.Point(972, 565);
+            this.buttonRefreshPanel.Name = "buttonRefreshPanel";
+            this.buttonRefreshPanel.Size = new System.Drawing.Size(75, 23);
+            this.buttonRefreshPanel.TabIndex = 12;
+            this.buttonRefreshPanel.Text = "Refresh panel";
+            this.buttonRefreshPanel.UseVisualStyleBackColor = true;
+            this.buttonRefreshPanel.Click += new System.EventHandler(this.buttonRefreshPanel_Click);
+            // 
             // ComputerGraphics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 600);
+            this.Controls.Add(this.buttonRefreshPanel);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -562,6 +701,16 @@ namespace ComputerGraphics
             this.groupBoxCircle.ResumeLayout(false);
             this.groupBoxCircle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRadius)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.groupBoxAddingPoint.ResumeLayout(false);
+            this.groupBoxAddingPoint.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -607,5 +756,16 @@ namespace ComputerGraphics
         private NumericUpDown numericUpDownSecondX;
         private Label labelSecondX;
         private Button buttonDrawLine;
+        private Button buttonRefreshPanel;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Button buttonFill;
+        private Button buttonAddPoint;
+        private GroupBox groupBoxAddingPoint;
+        private NumericUpDown numericUpDownY;
+        private Label labelY;
+        private NumericUpDown numericUpDownX;
+        private Label labelX;
     }
 }

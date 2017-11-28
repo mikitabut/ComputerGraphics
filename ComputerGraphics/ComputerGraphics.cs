@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -9,6 +10,7 @@ namespace ComputerGraphics
     public partial class ComputerGraphics : Form
     {
         #region Initialization
+
         public int cellSize = 15;
         public int panelWidth;
         public int panelHeight;
@@ -22,9 +24,13 @@ namespace ComputerGraphics
 
         public Point start;
         public Point finish;
+
         public int radius;
         public int a;
         public int b;
+
+        public List<Point> borderPoints = new List<Point>();
+
         #endregion
 
         public ComputerGraphics()
@@ -50,10 +56,16 @@ namespace ComputerGraphics
             g.DrawLine(thickBlack, new Point(0, center.Y), new Point(panelWidth, center.Y));
         }
 
-        #region Second task - Drawing lines
-        private void buttonDrawLine_Click(object sender, EventArgs e)
+        private void buttonRefreshPanel_Click(object sender, EventArgs e)
         {
             panel.Refresh();
+            borderPoints.Clear();
+        }
+
+        #region Second task - Drawing lines
+
+        private void buttonDrawLine_Click(object sender, EventArgs e)
+        {
             start = GetFirstPoint();
             finish = GetSecondPoint();
             DrawLineByBresenhamAlgorithm();
@@ -73,8 +85,9 @@ namespace ComputerGraphics
             return new Point(secondX, secondY);
         }
 
-        private void DrawLineByBresenhamAlgorithm()
+        private List<Point> DrawLineByBresenhamAlgorithm()
         {
+            List<Point> allPoints = new List<Point>();
             double error = -0.5;
             double k = ((double)(finish.Y - start.Y) / (finish.X - start.X));
             int dx = Math.Abs(finish.X - start.X);
@@ -88,6 +101,7 @@ namespace ComputerGraphics
                 k = 1 / k;
             }
             DrawPixelUnderLine(start.X, start.Y);
+            allPoints.Add(new Point(start.X, start.Y));
             for(int i = 1; i <= Math.Max(dx, dy); i++)
             {
                 error += Math.Abs(k);
@@ -110,7 +124,10 @@ namespace ComputerGraphics
                     }
                 }
                 DrawPixelUnderLine(x, y);
+                allPoints.Add(new Point(x, y));
             }
+
+            return allPoints;
         }
 
         private void DrawPixelUnderLine(int x, int y)
@@ -125,6 +142,7 @@ namespace ComputerGraphics
             Point secondPixel = new Point(center.X + finish.X * cellSize, center.Y - finish.Y * cellSize);
             g.DrawLine(thinRed, firstPixel, secondPixel);
         }
+
         #endregion
 
         #region Third task - Drawing a circle and an ellipse
@@ -133,7 +151,6 @@ namespace ComputerGraphics
 
         private void buttonDrawCircle_Click(object sender, EventArgs e)
         {
-            panel.Refresh();
             radius = Convert.ToInt32(numericUpDownRadius.Value);
             DrawCircleByBresenhamAlgorithm();
         }
@@ -212,7 +229,6 @@ namespace ComputerGraphics
 
         private void buttonDrawEllipse_Click(object sender, EventArgs e)
         {
-            panel.Refresh();
             a = Convert.ToInt32(numericUpDownA.Value);
             b = Convert.ToInt32(numericUpDownB.Value);
             DrawEllipseByBresenhamAlgorithm();
@@ -318,7 +334,82 @@ namespace ComputerGraphics
 
         #region Fourth task - Filling polygons
 
+        private void buttonAddPoint_Click(object sender, EventArgs e)
+        {
+            Point newPoint = GetNewPoint();
+            borderPoints.Add(newPoint);
+            DrawPixel(newPoint);
+        }
 
+        private Point GetNewPoint()
+        {
+            int newX = Convert.ToInt32(numericUpDownX.Value);
+            int newY = Convert.ToInt32(numericUpDownY.Value);
+            return new Point(newX, newY);
+        }
+
+        private void buttonFill_Click(object sender, EventArgs e)
+        {
+            FillBorder();
+            Point centralPoint = GetCentralPoint();
+            FillNeighbours(centralPoint);
+        }
+
+        private void FillBorder()
+        {
+            int vertexCount = borderPoints.Count;
+            start = borderPoints[vertexCount - 1];
+            finish = borderPoints[0];
+            borderPoints.AddRange(DrawLineByBresenhamAlgorithm());
+            for(int i = 0; i < vertexCount - 1; i++)
+            {
+                start = borderPoints[i];
+                finish = borderPoints[i + 1];
+                borderPoints.AddRange(DrawLineByBresenhamAlgorithm());
+            }
+        }
+
+        private Point GetCentralPoint()
+        {
+            int middleX = (borderPoints.Min(x => x.X) + borderPoints.Max(x => x.X)) / 2;
+            List<Point> middleCrossingPoints = borderPoints.Where(x => x.X == middleX).ToList();
+            int middleY = (middleCrossingPoints[0].Y + middleCrossingPoints[1].Y) / 2;
+            DrawPixel(middleX, middleY);
+            return new Point(middleX, middleY);
+        }
+
+        private void FillNeighbours(Point centralPoint)
+        {
+            Point newPoint;
+            if(!borderPoints.Any(x => x.X == centralPoint.X + 1 && x.Y == centralPoint.Y))
+            {
+                newPoint = new Point(centralPoint.X + 1, centralPoint.Y);
+                borderPoints.Add(newPoint);
+                DrawPixel(newPoint);
+                FillNeighbours(newPoint);
+            }
+            if(!borderPoints.Any(x => x.X == centralPoint.X - 1 && x.Y == centralPoint.Y))
+            {
+                newPoint = new Point(centralPoint.X - 1, centralPoint.Y);
+                borderPoints.Add(newPoint);
+                DrawPixel(newPoint);
+                FillNeighbours(newPoint);
+            }
+            if(!borderPoints.Any(x => x.X == centralPoint.X && x.Y == centralPoint.Y + 1))
+            {
+                newPoint = new Point(centralPoint.X, centralPoint.Y + 1);
+                borderPoints.Add(newPoint);
+                DrawPixel(newPoint);
+                FillNeighbours(newPoint);
+            }
+            if(!borderPoints.Any(x => x.X == centralPoint.X && x.Y == centralPoint.Y - 1))
+            {
+                newPoint = new Point(centralPoint.X, centralPoint.Y - 1);
+                borderPoints.Add(newPoint);
+                DrawPixel(newPoint);
+                FillNeighbours(newPoint);
+            }
+        }
 
         #endregion
 
@@ -353,6 +444,10 @@ namespace ComputerGraphics
             g.FillRectangle(blackBrush, left, top, cellSize, cellSize);
         }
 
+
+
         #endregion
+
+        
     }
 }

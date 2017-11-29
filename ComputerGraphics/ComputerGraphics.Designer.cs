@@ -81,6 +81,12 @@ namespace ComputerGraphics
             this.tabPage13 = new System.Windows.Forms.TabPage();
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.buttonRefreshPanel = new System.Windows.Forms.Button();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.buttonConvertingToHalftone = new System.Windows.Forms.Button();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.panel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBoxSecondPoint.SuspendLayout();
@@ -101,11 +107,16 @@ namespace ComputerGraphics
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // panel
             // 
             this.panel.BackColor = System.Drawing.Color.White;
+            this.panel.Controls.Add(this.pictureBox);
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(900, 600);
@@ -137,6 +148,7 @@ namespace ComputerGraphics
             this.tabControl.Size = new System.Drawing.Size(195, 426);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 11;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -561,14 +573,15 @@ namespace ComputerGraphics
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 14);
+            this.label6.Location = new System.Drawing.Point(36, 17);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 13);
+            this.label6.Size = new System.Drawing.Size(120, 13);
             this.label6.TabIndex = 9;
-            this.label6.Text = "Drawing a circle and an ellipse";
+            this.label6.Text = "Approximation of curves";
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.label7);
             this.tabPage6.Location = new System.Drawing.Point(4, 40);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
@@ -579,6 +592,9 @@ namespace ComputerGraphics
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.pictureBox8);
+            this.tabPage7.Controls.Add(this.buttonConvertingToHalftone);
+            this.tabPage7.Controls.Add(this.label8);
             this.tabPage7.Location = new System.Drawing.Point(4, 40);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
@@ -667,6 +683,54 @@ namespace ComputerGraphics
             this.buttonRefreshPanel.UseVisualStyleBackColor = true;
             this.buttonRefreshPanel.Click += new System.EventHandler(this.buttonRefreshPanel_Click);
             // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(900, 600);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 0;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(19, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(138, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Building an image histogram";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 12);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(186, 13);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Converting a color image to a halftone";
+            // 
+            // buttonConvertingToHalftone
+            // 
+            this.buttonConvertingToHalftone.Location = new System.Drawing.Point(34, 320);
+            this.buttonConvertingToHalftone.Name = "buttonConvertingToHalftone";
+            this.buttonConvertingToHalftone.Size = new System.Drawing.Size(130, 43);
+            this.buttonConvertingToHalftone.TabIndex = 11;
+            this.buttonConvertingToHalftone.Text = "Converting";
+            this.buttonConvertingToHalftone.UseVisualStyleBackColor = true;
+            this.buttonConvertingToHalftone.Click += new System.EventHandler(this.buttonConvertingToHalftone_Click);
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox8.Location = new System.Drawing.Point(6, 37);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(175, 165);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 12;
+            this.pictureBox8.TabStop = false;
+            // 
             // ComputerGraphics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -681,6 +745,7 @@ namespace ComputerGraphics
             this.Name = "ComputerGraphics";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Computer graphics";
+            this.panel.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -711,6 +776,12 @@ namespace ComputerGraphics
             this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -767,5 +838,10 @@ namespace ComputerGraphics
         private Label labelY;
         private NumericUpDown numericUpDownX;
         private Label labelX;
+        private PictureBox pictureBox;
+        private Label label7;
+        private Label label8;
+        private Button buttonConvertingToHalftone;
+        private PictureBox pictureBox8;
     }
 }

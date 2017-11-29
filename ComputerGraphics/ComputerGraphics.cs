@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -12,6 +13,7 @@ namespace ComputerGraphics
         #region Initialization
 
         public int cellSize = 15;
+        public string ContentPath = @"C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\Content\";
         public int panelWidth;
         public int panelHeight;
         public Point center;
@@ -31,8 +33,6 @@ namespace ComputerGraphics
 
         public List<Point> borderPoints = new List<Point>();
 
-        #endregion
-
         public ComputerGraphics()
         {
             InitializeComponent();
@@ -40,7 +40,11 @@ namespace ComputerGraphics
             panelHeight = panel.Height; //y
             center = new Point(panelWidth / 2, panelHeight / 2);
             g = panel.CreateGraphics();
-        }     
+        }
+
+        #endregion
+
+        #region Main methods
 
         private void panel_Paint(object sender, PaintEventArgs e)
         {
@@ -61,6 +65,13 @@ namespace ComputerGraphics
             panel.Refresh();
             borderPoints.Clear();
         }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pictureBox.Visible = tabControl.SelectedIndex >= 5 ? true : false;
+        }
+
+        #endregion
 
         #region Second task - Drawing lines
 
@@ -419,6 +430,81 @@ namespace ComputerGraphics
 
         #endregion
 
+        #region Sixth task - Approximation of curves
+
+
+
+        #endregion
+
+        #region Seventh task - Building an image histogram
+
+
+
+        #endregion
+
+        #region Eighth task - Converting a color image to a halftone
+
+        private void buttonConvertingToHalftone_Click(object sender, EventArgs e)
+        {
+            pictureBox.Image = Image.FromFile(ContentPath + "Example.jpg");
+            pictureBox8.Image = Image.FromFile(ContentPath + "Example.jpg");
+            Bitmap image = new Bitmap(pictureBox.Image);
+            for(int y = 0; y < image.Height; y++) 
+            {
+                for(int x = 0; x < image.Width; x++)
+                {
+                    Color color = image.GetPixel(x, y);
+                    var newColor = (color.R + color.G + color.B) / 3;
+                    image.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
+                }
+            }
+            pictureBox.Image = image;
+        }
+
+        #endregion
+
+        #region Ninth task - Binarization of halftone images
+
+
+
+        #endregion
+
+        #region Tenth task - Elimination of noise on a binary image
+
+
+
+        #endregion
+
+        #region Eleventh task - Elimination of noise on a halftone image
+
+
+
+        #endregion
+
+        #region Twelfth task - Selecting object borders on a binary image
+
+
+
+        #endregion
+
+        #region Thirteenth task - Selecting object borders on a halftone image
+
+
+
+        #endregion
+
+        #region Fourteenth task - Segmentation of images
+
+
+
+        #endregion
+
+        #region Fifteenth task - Recognition of image objects
+
+
+
+        #endregion
+
         #region Supporting functions
 
         private void DrawPixel(int x, int y)
@@ -443,6 +529,8 @@ namespace ComputerGraphics
             int top = (int)(center.Y - (point.Y + 0.5) * cellSize);
             g.FillRectangle(blackBrush, left, top, cellSize, cellSize);
         }
+
+
 
 
 

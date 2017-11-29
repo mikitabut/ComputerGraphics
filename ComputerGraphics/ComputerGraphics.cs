@@ -33,6 +33,10 @@ namespace ComputerGraphics
 
         public List<Point> borderPoints = new List<Point>();
 
+        public OpenFileDialog openFileDialog = new OpenFileDialog();
+        public SaveFileDialog saveFileDialog = new SaveFileDialog();
+        public Image currentImage;
+
         public ComputerGraphics()
         {
             InitializeComponent();
@@ -84,15 +88,15 @@ namespace ComputerGraphics
 
         private Point GetFirstPoint()
         {
-            int firstX = Convert.ToInt32(numericUpDownFirstX.Value);
-            int firstY = Convert.ToInt32(numericUpDownFirstY.Value);
+            int firstX = Convert.ToInt32(numericUpDown2FirstX.Value);
+            int firstY = Convert.ToInt32(numericUpDown2FirstY.Value);
             return new Point(firstX, firstY);
         }
 
         private Point GetSecondPoint()
         {
-            int secondX = Convert.ToInt32(numericUpDownSecondX.Value);
-            int secondY = Convert.ToInt32(numericUpDownSecondY.Value);
+            int secondX = Convert.ToInt32(numericUpDown2SecondX.Value);
+            int secondY = Convert.ToInt32(numericUpDown2SecondY.Value);
             return new Point(secondX, secondY);
         }
 
@@ -162,7 +166,7 @@ namespace ComputerGraphics
 
         private void buttonDrawCircle_Click(object sender, EventArgs e)
         {
-            radius = Convert.ToInt32(numericUpDownRadius.Value);
+            radius = Convert.ToInt32(numericUpDown3Radius.Value);
             DrawCircleByBresenhamAlgorithm();
         }
 
@@ -240,8 +244,8 @@ namespace ComputerGraphics
 
         private void buttonDrawEllipse_Click(object sender, EventArgs e)
         {
-            a = Convert.ToInt32(numericUpDownA.Value);
-            b = Convert.ToInt32(numericUpDownB.Value);
+            a = Convert.ToInt32(numericUpDown3A.Value);
+            b = Convert.ToInt32(numericUpDown3B.Value);
             DrawEllipseByBresenhamAlgorithm();
         }
         
@@ -354,8 +358,8 @@ namespace ComputerGraphics
 
         private Point GetNewPoint()
         {
-            int newX = Convert.ToInt32(numericUpDownX.Value);
-            int newY = Convert.ToInt32(numericUpDownY.Value);
+            int newX = Convert.ToInt32(numericUpDown4X.Value);
+            int newY = Convert.ToInt32(numericUpDown4Y.Value);
             return new Point(newX, newY);
         }
 
@@ -444,10 +448,26 @@ namespace ComputerGraphics
 
         #region Eighth task - Converting a color image to a halftone
 
+        private void buttonChooseImage_Click(object sender, EventArgs e)
+        {
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                currentImage = Image.FromFile(openFileDialog.FileName);
+                pictureBox8UntreatedImage.Image = currentImage;
+            }
+        }
+
+        private void button8Save_Click(object sender, EventArgs e)
+        {
+            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                currentImage.Save(saveFileDialog.FileName + ".jpg");
+            }
+        }
+
         private void buttonConvertingToHalftone_Click(object sender, EventArgs e)
         {
-            pictureBox.Image = Image.FromFile(ContentPath + "Example.jpg");
-            pictureBox8.Image = Image.FromFile(ContentPath + "Example.jpg");
+            pictureBox.Image = currentImage;
             Bitmap image = new Bitmap(pictureBox.Image);
             for(int y = 0; y < image.Height; y++) 
             {
@@ -458,7 +478,8 @@ namespace ComputerGraphics
                     image.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
                 }
             }
-            pictureBox.Image = image;
+            currentImage = image;
+            pictureBox.Image = currentImage;
         }
 
         #endregion
@@ -534,8 +555,9 @@ namespace ComputerGraphics
 
 
 
-        #endregion
 
-        
+
+
+        #endregion
     }
 }

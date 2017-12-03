@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace ComputerGraphics
@@ -81,6 +82,16 @@ namespace ComputerGraphics
             this.button8ConvertingToHalftone = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.label9UpperLimit = new System.Windows.Forms.Label();
+            this.label9LowerLimit = new System.Windows.Forms.Label();
+            this.trackBar9UpperLimit = new System.Windows.Forms.TrackBar();
+            this.trackBar9LowerLimit = new System.Windows.Forms.TrackBar();
+            this.comboBox9BinarizationMethods = new System.Windows.Forms.ComboBox();
+            this.button9SaveImage = new System.Windows.Forms.Button();
+            this.button9ChooseImage = new System.Windows.Forms.Button();
+            this.button9ConvertingToBinary = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox9UntreatedImage = new System.Windows.Forms.PictureBox();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tabPage12 = new System.Windows.Forms.TabPage();
@@ -88,6 +99,8 @@ namespace ComputerGraphics
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.tabPage15 = new System.Windows.Forms.TabPage();
             this.buttonRefreshPanel = new System.Windows.Forms.Button();
+            this.label9LowerLimitValue = new System.Windows.Forms.Label();
+            this.label9UpperLimitValue = new System.Windows.Forms.Label();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -113,6 +126,10 @@ namespace ComputerGraphics
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8UntreatedImage)).BeginInit();
+            this.tabPage9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar9UpperLimit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar9LowerLimit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9UntreatedImage)).BeginInit();
             this.SuspendLayout();
             // 
             // panel
@@ -152,12 +169,12 @@ namespace ComputerGraphics
             this.tabControl.Controls.Add(this.tabPage14);
             this.tabControl.Controls.Add(this.tabPage15);
             this.tabControl.ItemSize = new System.Drawing.Size(26, 18);
-            this.tabControl.Location = new System.Drawing.Point(902, 1);
+            this.tabControl.Location = new System.Drawing.Point(904, 0);
             this.tabControl.Margin = new System.Windows.Forms.Padding(1);
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(195, 426);
+            this.tabControl.Size = new System.Drawing.Size(195, 493);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 11;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
@@ -171,7 +188,7 @@ namespace ComputerGraphics
             this.tabPage2.Location = new System.Drawing.Point(4, 40);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(187, 382);
+            this.tabPage2.Size = new System.Drawing.Size(187, 449);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -320,7 +337,7 @@ namespace ComputerGraphics
             this.tabPage3.Location = new System.Drawing.Point(4, 40);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(187, 382);
+            this.tabPage3.Size = new System.Drawing.Size(187, 449);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -459,7 +476,7 @@ namespace ComputerGraphics
             this.tabPage4.Location = new System.Drawing.Point(4, 40);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(187, 382);
+            this.tabPage4.Size = new System.Drawing.Size(187, 449);
             this.tabPage4.TabIndex = 2;
             this.tabPage4.Text = "4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -557,7 +574,7 @@ namespace ComputerGraphics
             this.tabPage5.Location = new System.Drawing.Point(4, 40);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(187, 382);
+            this.tabPage5.Size = new System.Drawing.Size(187, 449);
             this.tabPage5.TabIndex = 3;
             this.tabPage5.Text = "5";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -577,7 +594,7 @@ namespace ComputerGraphics
             this.tabPage6.Location = new System.Drawing.Point(4, 40);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(187, 382);
+            this.tabPage6.Size = new System.Drawing.Size(187, 449);
             this.tabPage6.TabIndex = 4;
             this.tabPage6.Text = "6";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -597,7 +614,7 @@ namespace ComputerGraphics
             this.tabPage7.Location = new System.Drawing.Point(4, 40);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(187, 382);
+            this.tabPage7.Size = new System.Drawing.Size(187, 449);
             this.tabPage7.TabIndex = 5;
             this.tabPage7.Text = "7";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -621,7 +638,7 @@ namespace ComputerGraphics
             this.tabPage8.Location = new System.Drawing.Point(4, 40);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(187, 382);
+            this.tabPage8.Size = new System.Drawing.Size(187, 449);
             this.tabPage8.TabIndex = 6;
             this.tabPage8.Text = "8";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -644,7 +661,7 @@ namespace ComputerGraphics
             this.button8ChooseImage.TabIndex = 13;
             this.button8ChooseImage.Text = "Choose image";
             this.button8ChooseImage.UseVisualStyleBackColor = true;
-            this.button8ChooseImage.Click += new System.EventHandler(this.buttonChooseImage_Click);
+            this.button8ChooseImage.Click += new System.EventHandler(this.button8ChooseImage_Click);
             // 
             // pictureBox8UntreatedImage
             // 
@@ -677,20 +694,138 @@ namespace ComputerGraphics
             // 
             // tabPage9
             // 
+            this.tabPage9.Controls.Add(this.label9UpperLimitValue);
+            this.tabPage9.Controls.Add(this.label9LowerLimitValue);
+            this.tabPage9.Controls.Add(this.label9UpperLimit);
+            this.tabPage9.Controls.Add(this.label9LowerLimit);
+            this.tabPage9.Controls.Add(this.trackBar9UpperLimit);
+            this.tabPage9.Controls.Add(this.trackBar9LowerLimit);
+            this.tabPage9.Controls.Add(this.comboBox9BinarizationMethods);
+            this.tabPage9.Controls.Add(this.button9SaveImage);
+            this.tabPage9.Controls.Add(this.button9ChooseImage);
+            this.tabPage9.Controls.Add(this.button9ConvertingToBinary);
+            this.tabPage9.Controls.Add(this.label9);
+            this.tabPage9.Controls.Add(this.pictureBox9UntreatedImage);
             this.tabPage9.Location = new System.Drawing.Point(4, 40);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(187, 382);
+            this.tabPage9.Size = new System.Drawing.Size(187, 449);
             this.tabPage9.TabIndex = 7;
             this.tabPage9.Text = "9";
             this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // label9UpperLimit
+            // 
+            this.label9UpperLimit.AutoSize = true;
+            this.label9UpperLimit.Location = new System.Drawing.Point(28, 329);
+            this.label9UpperLimit.Name = "label9UpperLimit";
+            this.label9UpperLimit.Size = new System.Drawing.Size(62, 13);
+            this.label9UpperLimit.TabIndex = 22;
+            this.label9UpperLimit.Text = "Upper limit :";
+            // 
+            // label9LowerLimit
+            // 
+            this.label9LowerLimit.AutoSize = true;
+            this.label9LowerLimit.Location = new System.Drawing.Point(28, 265);
+            this.label9LowerLimit.Name = "label9LowerLimit";
+            this.label9LowerLimit.Size = new System.Drawing.Size(62, 13);
+            this.label9LowerLimit.TabIndex = 21;
+            this.label9LowerLimit.Text = "Lower limit :";
+            // 
+            // trackBar9UpperLimit
+            // 
+            this.trackBar9UpperLimit.LargeChange = 32;
+            this.trackBar9UpperLimit.Location = new System.Drawing.Point(7, 345);
+            this.trackBar9UpperLimit.Maximum = 255;
+            this.trackBar9UpperLimit.Name = "trackBar9UpperLimit";
+            this.trackBar9UpperLimit.Size = new System.Drawing.Size(174, 45);
+            this.trackBar9UpperLimit.SmallChange = 16;
+            this.trackBar9UpperLimit.TabIndex = 20;
+            this.trackBar9UpperLimit.TickFrequency = 16;
+            this.trackBar9UpperLimit.Value = 128;
+            this.trackBar9UpperLimit.Scroll += new System.EventHandler(this.trackBar9UpperLimit_Scroll);
+            // 
+            // trackBar9LowerLimit
+            // 
+            this.trackBar9LowerLimit.LargeChange = 32;
+            this.trackBar9LowerLimit.Location = new System.Drawing.Point(7, 281);
+            this.trackBar9LowerLimit.Maximum = 255;
+            this.trackBar9LowerLimit.Name = "trackBar9LowerLimit";
+            this.trackBar9LowerLimit.Size = new System.Drawing.Size(174, 45);
+            this.trackBar9LowerLimit.SmallChange = 16;
+            this.trackBar9LowerLimit.TabIndex = 19;
+            this.trackBar9LowerLimit.TickFrequency = 16;
+            this.trackBar9LowerLimit.Value = 128;
+            this.trackBar9LowerLimit.Scroll += new System.EventHandler(this.trackBar9LowerLimit_Scroll);
+            // 
+            // comboBox9BinarizationMethods
+            // 
+            this.comboBox9BinarizationMethods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox9BinarizationMethods.Items.AddRange(new object[] {
+            "With lower limit",
+            "With upper limit",
+            "Double-limited"});
+            this.comboBox9BinarizationMethods.Location = new System.Drawing.Point(6, 241);
+            this.comboBox9BinarizationMethods.Name = "comboBox9BinarizationMethods";
+            this.comboBox9BinarizationMethods.Size = new System.Drawing.Size(175, 21);
+            this.comboBox9BinarizationMethods.TabIndex = 18;
+            this.comboBox9BinarizationMethods.SelectedIndexChanged += new System.EventHandler(this.comboBox9BinarizationMethods_SelectedIndexChanged);
+            // 
+            // button9SaveImage
+            // 
+            this.button9SaveImage.Location = new System.Drawing.Point(97, 205);
+            this.button9SaveImage.Name = "button9SaveImage";
+            this.button9SaveImage.Size = new System.Drawing.Size(84, 30);
+            this.button9SaveImage.TabIndex = 17;
+            this.button9SaveImage.Text = "Save";
+            this.button9SaveImage.UseVisualStyleBackColor = true;
+            this.button9SaveImage.Click += new System.EventHandler(this.button9SaveImage_Click);
+            // 
+            // button9ChooseImage
+            // 
+            this.button9ChooseImage.Location = new System.Drawing.Point(6, 205);
+            this.button9ChooseImage.Name = "button9ChooseImage";
+            this.button9ChooseImage.Size = new System.Drawing.Size(84, 30);
+            this.button9ChooseImage.TabIndex = 16;
+            this.button9ChooseImage.Text = "Choose image";
+            this.button9ChooseImage.UseVisualStyleBackColor = true;
+            this.button9ChooseImage.Click += new System.EventHandler(this.button9ChooseImage_Click);
+            // 
+            // button9ConvertingToBinary
+            // 
+            this.button9ConvertingToBinary.Location = new System.Drawing.Point(21, 396);
+            this.button9ConvertingToBinary.Name = "button9ConvertingToBinary";
+            this.button9ConvertingToBinary.Size = new System.Drawing.Size(147, 43);
+            this.button9ConvertingToBinary.TabIndex = 15;
+            this.button9ConvertingToBinary.Text = "Converting";
+            this.button9ConvertingToBinary.UseVisualStyleBackColor = true;
+            this.button9ConvertingToBinary.Click += new System.EventHandler(this.button9ConvertingToBinary_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(18, 10);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(150, 13);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Binarization of halftone images";
+            // 
+            // pictureBox9UntreatedImage
+            // 
+            this.pictureBox9UntreatedImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox9UntreatedImage.Location = new System.Drawing.Point(6, 34);
+            this.pictureBox9UntreatedImage.Name = "pictureBox9UntreatedImage";
+            this.pictureBox9UntreatedImage.Size = new System.Drawing.Size(175, 165);
+            this.pictureBox9UntreatedImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9UntreatedImage.TabIndex = 13;
+            this.pictureBox9UntreatedImage.TabStop = false;
             // 
             // tabPage10
             // 
             this.tabPage10.Location = new System.Drawing.Point(4, 40);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(187, 382);
+            this.tabPage10.Size = new System.Drawing.Size(187, 449);
             this.tabPage10.TabIndex = 8;
             this.tabPage10.Text = "10";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -700,7 +835,7 @@ namespace ComputerGraphics
             this.tabPage11.Location = new System.Drawing.Point(4, 40);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(187, 382);
+            this.tabPage11.Size = new System.Drawing.Size(187, 449);
             this.tabPage11.TabIndex = 9;
             this.tabPage11.Text = "11";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -710,7 +845,7 @@ namespace ComputerGraphics
             this.tabPage12.Location = new System.Drawing.Point(4, 40);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(187, 382);
+            this.tabPage12.Size = new System.Drawing.Size(187, 449);
             this.tabPage12.TabIndex = 10;
             this.tabPage12.Text = "12";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -720,7 +855,7 @@ namespace ComputerGraphics
             this.tabPage13.Location = new System.Drawing.Point(4, 40);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage13.Size = new System.Drawing.Size(187, 382);
+            this.tabPage13.Size = new System.Drawing.Size(187, 449);
             this.tabPage13.TabIndex = 11;
             this.tabPage13.Text = "13";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -730,7 +865,7 @@ namespace ComputerGraphics
             this.tabPage14.Location = new System.Drawing.Point(4, 40);
             this.tabPage14.Name = "tabPage14";
             this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage14.Size = new System.Drawing.Size(187, 382);
+            this.tabPage14.Size = new System.Drawing.Size(187, 449);
             this.tabPage14.TabIndex = 12;
             this.tabPage14.Text = "14";
             this.tabPage14.UseVisualStyleBackColor = true;
@@ -740,7 +875,7 @@ namespace ComputerGraphics
             this.tabPage15.Location = new System.Drawing.Point(4, 40);
             this.tabPage15.Name = "tabPage15";
             this.tabPage15.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage15.Size = new System.Drawing.Size(187, 382);
+            this.tabPage15.Size = new System.Drawing.Size(187, 449);
             this.tabPage15.TabIndex = 13;
             this.tabPage15.Text = "15";
             this.tabPage15.UseVisualStyleBackColor = true;
@@ -754,6 +889,24 @@ namespace ComputerGraphics
             this.buttonRefreshPanel.Text = "Refresh panel";
             this.buttonRefreshPanel.UseVisualStyleBackColor = true;
             this.buttonRefreshPanel.Click += new System.EventHandler(this.buttonRefreshPanel_Click);
+            // 
+            // label9LowerLimitValue
+            // 
+            this.label9LowerLimitValue.AutoSize = true;
+            this.label9LowerLimitValue.Location = new System.Drawing.Point(94, 265);
+            this.label9LowerLimitValue.Name = "label9LowerLimitValue";
+            this.label9LowerLimitValue.Size = new System.Drawing.Size(25, 13);
+            this.label9LowerLimitValue.TabIndex = 23;
+            this.label9LowerLimitValue.Text = "128";
+            // 
+            // label9UpperLimitValue
+            // 
+            this.label9UpperLimitValue.AutoSize = true;
+            this.label9UpperLimitValue.Location = new System.Drawing.Point(94, 329);
+            this.label9UpperLimitValue.Name = "label9UpperLimitValue";
+            this.label9UpperLimitValue.Size = new System.Drawing.Size(25, 13);
+            this.label9UpperLimitValue.TabIndex = 24;
+            this.label9UpperLimitValue.Text = "128";
             // 
             // ComputerGraphics
             // 
@@ -806,6 +959,11 @@ namespace ComputerGraphics
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8UntreatedImage)).EndInit();
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar9UpperLimit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar9LowerLimit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9UntreatedImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -869,5 +1027,17 @@ namespace ComputerGraphics
         private PictureBox pictureBox8UntreatedImage;
         private Button button8ChooseImage;
         private Button button8SaveImage;
+        private Label label9;
+        private PictureBox pictureBox9UntreatedImage;
+        private Button button9SaveImage;
+        private Button button9ChooseImage;
+        private Button button9ConvertingToBinary;
+        private ComboBox comboBox9BinarizationMethods;
+        private TrackBar trackBar9LowerLimit;
+        private TrackBar trackBar9UpperLimit;
+        private Label label9LowerLimit;
+        private Label label9UpperLimit;
+        private Label label9UpperLimitValue;
+        private Label label9LowerLimitValue;
     }
 }

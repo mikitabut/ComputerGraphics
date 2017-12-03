@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -13,7 +12,7 @@ namespace ComputerGraphics
         #region Initialization
 
         public int cellSize = 15;
-        public string ContentPath = @"C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\Content\";
+        //public string ContentPath = @"C:\Users\User\Documents\Visual Studio 2017\Projects\ComputerGraphics\ComputerGraphics\Content\";
         public int panelWidth;
         public int panelHeight;
         public Point center;
@@ -33,9 +32,7 @@ namespace ComputerGraphics
 
         public List<Point> borderPoints = new List<Point>();
 
-        public OpenFileDialog openFileDialog = new OpenFileDialog();
-        public SaveFileDialog saveFileDialog = new SaveFileDialog();
-        public Image currentImage;
+        public delegate int BinarizationType(Color color, int lowerLimit = 0, int upperLimit = 0);
 
         public ComputerGraphics()
         {
@@ -73,6 +70,14 @@ namespace ComputerGraphics
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             pictureBox.Visible = tabControl.SelectedIndex >= 5 ? true : false;
+            if(tabControl.SelectedIndex == 7)
+            {
+                comboBox9BinarizationMethods.SelectedIndex = Constants.WithLowerLimit;
+                if(pictureBox9UntreatedImage.Image == null)
+                {
+                    pictureBox9UntreatedImage.Image = pictureBox.Image;
+                }
+            }
         }
 
         #endregion
@@ -448,27 +453,19 @@ namespace ComputerGraphics
 
         #region Eighth task - Converting a color image to a halftone
 
-        private void buttonChooseImage_Click(object sender, EventArgs e)
+        private void button8ChooseImage_Click(object sender, EventArgs e)
         {
-            if(openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                currentImage = Image.FromFile(openFileDialog.FileName);
-                pictureBox8UntreatedImage.Image = currentImage;
-            }
+            ChooseImageAndSetItInto(pictureBox8UntreatedImage);
         }
 
         private void button8Save_Click(object sender, EventArgs e)
         {
-            if(saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                currentImage.Save(saveFileDialog.FileName + ".jpg");
-            }
+            SaveCurrentImage();
         }
 
         private void buttonConvertingToHalftone_Click(object sender, EventArgs e)
         {
-            pictureBox.Image = currentImage;
-            Bitmap image = new Bitmap(pictureBox.Image);
+            Bitmap image = new Bitmap(pictureBox8UntreatedImage.Image);
             for(int y = 0; y < image.Height; y++) 
             {
                 for(int x = 0; x < image.Width; x++)
@@ -478,15 +475,124 @@ namespace ComputerGraphics
                     image.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
                 }
             }
-            currentImage = image;
-            pictureBox.Image = currentImage;
+            pictureBox.Image = image;
         }
 
         #endregion
 
         #region Ninth task - Binarization of halftone images
 
+        private void button9ChooseImage_Click(object sender, EventArgs e)
+        {
+            ChooseImageAndSetItInto(pictureBox9UntreatedImage);
+        }
 
+        private void button9SaveImage_Click(object sender, EventArgs e)
+        {
+            SaveCurrentImage();
+        }
+
+        private void button9ConvertingToBinary_Click(object sender, EventArgs e)
+        {
+            BinarizationType binarizationType;
+            switch(comboBox9BinarizationMethods.SelectedIndex)
+            {
+                case Constants.WithLowerLimit:
+                    {
+                        binarizationType = BinarizationWithLowerLimit;
+                        break;
+                    }
+                case Constants.WithUpperLimit:
+                    {
+                        binarizationType = BinarizationWithUpperLimit;
+                        break;
+                    }
+                case Constants.DoubleLimited:
+                    {
+                        binarizationType = DoubleLimitedBinariazation;
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Unknown binarization method.");
+                    }
+            }
+            Binarize(binarizationType);
+        }
+
+        private void Binarize(BinarizationType binarizationType)
+        {
+            int lowerLimit = trackBar9LowerLimit.Value;
+            int upperLimit = trackBar9UpperLimit.Value;
+            Bitmap image = new Bitmap(pictureBox9UntreatedImage.Image);
+            for(int y = 0; y < image.Height; y++)
+            {
+                for(int x = 0; x < image.Width; x++)
+                {
+                    Color color = image.GetPixel(x, y);
+                    int newColor = binarizationType(color, lowerLimit, upperLimit);
+                    image.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
+                }
+            }
+            pictureBox.Image = image;
+        }
+
+        private int BinarizationWithLowerLimit(Color color, int lowerLimit, int upperLimit)
+        {
+            return color.R >= lowerLimit ? 0 : 255;
+        }
+
+        private int BinarizationWithUpperLimit(Color color, int lowerLimit, int upperLimit)
+        {
+            return color.R <= upperLimit ? 0 : 255;
+        }
+
+        private int DoubleLimitedBinariazation(Color color, int lowerLimit, int upperLimit)
+        {
+            return (color.R <= lowerLimit || color.R > upperLimit) ? 0 : 255;
+        }
+
+        private void comboBox9BinarizationMethods_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(comboBox9BinarizationMethods.SelectedIndex)
+            {
+                case Constants.WithLowerLimit:
+                    {
+                        EnableUpperAndLowerTrackbars(true, false);
+                        break;
+                    }
+                case Constants.WithUpperLimit:
+                    {
+                        EnableUpperAndLowerTrackbars(false, true);
+                        break;
+                    }
+                case Constants.DoubleLimited:
+                    {
+                        EnableUpperAndLowerTrackbars(true, true);
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Unknown binarization method.");
+                    }
+            }
+        }
+
+        private void EnableUpperAndLowerTrackbars(bool lowerLimit, bool upperLimit)
+        {
+            trackBar9LowerLimit.Enabled = lowerLimit;
+            trackBar9UpperLimit.Enabled = upperLimit;
+        }
+
+        private void trackBar9LowerLimit_Scroll(object sender, EventArgs e)
+        {
+            label9LowerLimitValue.Text = trackBar9LowerLimit.Value.ToString();
+        }
+
+        private void trackBar9UpperLimit_Scroll(object sender, EventArgs e)
+        {
+            label9UpperLimitValue.Text = trackBar9UpperLimit.Value.ToString();
+        }
 
         #endregion
 
@@ -551,13 +657,26 @@ namespace ComputerGraphics
             g.FillRectangle(blackBrush, left, top, cellSize, cellSize);
         }
 
+        private void ChooseImageAndSetItInto(PictureBox pictureBox)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox.Image = Image.FromFile(openFileDialog.FileName);
+            }
+        }
 
-
-
-
-
-
+        private void SaveCurrentImage()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox.Image.Save(saveFileDialog.FileName + ".jpg");
+            }
+        }
 
         #endregion
+
+        
     }
 }

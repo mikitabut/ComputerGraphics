@@ -32,7 +32,8 @@ namespace ComputerGraphics
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel = new System.Windows.Forms.Panel();
+            this.panelPixel = new System.Windows.Forms.Panel();
+            this.panelHistogram = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -74,6 +75,9 @@ namespace ComputerGraphics
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button7BuildHistogram = new System.Windows.Forms.Button();
+            this.button7ChooseImage = new System.Windows.Forms.Button();
+            this.pictureBox7ExploredImage = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.button8SaveImage = new System.Windows.Forms.Button();
@@ -82,6 +86,8 @@ namespace ComputerGraphics
             this.button8ConvertingToHalftone = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.label9UpperLimitValue = new System.Windows.Forms.Label();
+            this.label9LowerLimitValue = new System.Windows.Forms.Label();
             this.label9UpperLimit = new System.Windows.Forms.Label();
             this.label9LowerLimit = new System.Windows.Forms.Label();
             this.trackBar9UpperLimit = new System.Windows.Forms.TrackBar();
@@ -99,9 +105,6 @@ namespace ComputerGraphics
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.tabPage15 = new System.Windows.Forms.TabPage();
             this.buttonRefreshPanel = new System.Windows.Forms.Button();
-            this.label9LowerLimitValue = new System.Windows.Forms.Label();
-            this.label9UpperLimitValue = new System.Windows.Forms.Label();
-            this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -124,6 +127,7 @@ namespace ComputerGraphics
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7ExploredImage)).BeginInit();
             this.tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8UntreatedImage)).BeginInit();
             this.tabPage9.SuspendLayout();
@@ -132,18 +136,27 @@ namespace ComputerGraphics
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9UntreatedImage)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel
+            // panelPixel
             // 
-            this.panel.BackColor = System.Drawing.Color.White;
-            this.panel.Controls.Add(this.pictureBox);
-            this.panel.Location = new System.Drawing.Point(0, 0);
-            this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(900, 600);
-            this.panel.TabIndex = 0;
-            this.panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
+            this.panelPixel.BackColor = System.Drawing.Color.White;
+            this.panelPixel.Location = new System.Drawing.Point(0, 0);
+            this.panelPixel.Name = "panelPixel";
+            this.panelPixel.Size = new System.Drawing.Size(900, 600);
+            this.panelPixel.TabIndex = 0;
+            this.panelPixel.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPixel_Paint);
+            // 
+            // panelHistogram
+            // 
+            this.panelHistogram.BackColor = System.Drawing.Color.White;
+            this.panelHistogram.Location = new System.Drawing.Point(0, 0);
+            this.panelHistogram.Name = "panelHistogram";
+            this.panelHistogram.Size = new System.Drawing.Size(900, 600);
+            this.panelHistogram.TabIndex = 1;
+            this.panelHistogram.Visible = false;
             // 
             // pictureBox
             // 
+            this.pictureBox.BackColor = System.Drawing.Color.White;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(900, 600);
@@ -610,6 +623,9 @@ namespace ComputerGraphics
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.button7BuildHistogram);
+            this.tabPage7.Controls.Add(this.button7ChooseImage);
+            this.tabPage7.Controls.Add(this.pictureBox7ExploredImage);
             this.tabPage7.Controls.Add(this.label7);
             this.tabPage7.Location = new System.Drawing.Point(4, 40);
             this.tabPage7.Name = "tabPage7";
@@ -618,6 +634,36 @@ namespace ComputerGraphics
             this.tabPage7.TabIndex = 5;
             this.tabPage7.Text = "7";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button7BuildHistogram
+            // 
+            this.button7BuildHistogram.Location = new System.Drawing.Point(5, 299);
+            this.button7BuildHistogram.Name = "button7BuildHistogram";
+            this.button7BuildHistogram.Size = new System.Drawing.Size(175, 60);
+            this.button7BuildHistogram.TabIndex = 15;
+            this.button7BuildHistogram.Text = "Build a histogram";
+            this.button7BuildHistogram.UseVisualStyleBackColor = true;
+            this.button7BuildHistogram.Click += new System.EventHandler(this.button7BuildHistogram_Click);
+            // 
+            // button7ChooseImage
+            // 
+            this.button7ChooseImage.Location = new System.Drawing.Point(5, 211);
+            this.button7ChooseImage.Name = "button7ChooseImage";
+            this.button7ChooseImage.Size = new System.Drawing.Size(175, 50);
+            this.button7ChooseImage.TabIndex = 14;
+            this.button7ChooseImage.Text = "Choose image";
+            this.button7ChooseImage.UseVisualStyleBackColor = true;
+            this.button7ChooseImage.Click += new System.EventHandler(this.button7ChooseImage_Click);
+            // 
+            // pictureBox7ExploredImage
+            // 
+            this.pictureBox7ExploredImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox7ExploredImage.Location = new System.Drawing.Point(5, 40);
+            this.pictureBox7ExploredImage.Name = "pictureBox7ExploredImage";
+            this.pictureBox7ExploredImage.Size = new System.Drawing.Size(175, 165);
+            this.pictureBox7ExploredImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7ExploredImage.TabIndex = 13;
+            this.pictureBox7ExploredImage.TabStop = false;
             // 
             // label7
             // 
@@ -645,9 +691,9 @@ namespace ComputerGraphics
             // 
             // button8SaveImage
             // 
-            this.button8SaveImage.Location = new System.Drawing.Point(57, 254);
+            this.button8SaveImage.Location = new System.Drawing.Point(6, 274);
             this.button8SaveImage.Name = "button8SaveImage";
-            this.button8SaveImage.Size = new System.Drawing.Size(84, 30);
+            this.button8SaveImage.Size = new System.Drawing.Size(175, 50);
             this.button8SaveImage.TabIndex = 14;
             this.button8SaveImage.Text = "Save";
             this.button8SaveImage.UseVisualStyleBackColor = true;
@@ -655,9 +701,9 @@ namespace ComputerGraphics
             // 
             // button8ChooseImage
             // 
-            this.button8ChooseImage.Location = new System.Drawing.Point(57, 208);
+            this.button8ChooseImage.Location = new System.Drawing.Point(6, 208);
             this.button8ChooseImage.Name = "button8ChooseImage";
-            this.button8ChooseImage.Size = new System.Drawing.Size(84, 29);
+            this.button8ChooseImage.Size = new System.Drawing.Size(175, 50);
             this.button8ChooseImage.TabIndex = 13;
             this.button8ChooseImage.Text = "Choose image";
             this.button8ChooseImage.UseVisualStyleBackColor = true;
@@ -675,9 +721,9 @@ namespace ComputerGraphics
             // 
             // button8ConvertingToHalftone
             // 
-            this.button8ConvertingToHalftone.Location = new System.Drawing.Point(34, 320);
+            this.button8ConvertingToHalftone.Location = new System.Drawing.Point(6, 351);
             this.button8ConvertingToHalftone.Name = "button8ConvertingToHalftone";
-            this.button8ConvertingToHalftone.Size = new System.Drawing.Size(130, 43);
+            this.button8ConvertingToHalftone.Size = new System.Drawing.Size(175, 60);
             this.button8ConvertingToHalftone.TabIndex = 11;
             this.button8ConvertingToHalftone.Text = "Converting";
             this.button8ConvertingToHalftone.UseVisualStyleBackColor = true;
@@ -713,6 +759,24 @@ namespace ComputerGraphics
             this.tabPage9.TabIndex = 7;
             this.tabPage9.Text = "9";
             this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // label9UpperLimitValue
+            // 
+            this.label9UpperLimitValue.AutoSize = true;
+            this.label9UpperLimitValue.Location = new System.Drawing.Point(94, 329);
+            this.label9UpperLimitValue.Name = "label9UpperLimitValue";
+            this.label9UpperLimitValue.Size = new System.Drawing.Size(25, 13);
+            this.label9UpperLimitValue.TabIndex = 24;
+            this.label9UpperLimitValue.Text = "128";
+            // 
+            // label9LowerLimitValue
+            // 
+            this.label9LowerLimitValue.AutoSize = true;
+            this.label9LowerLimitValue.Location = new System.Drawing.Point(94, 265);
+            this.label9LowerLimitValue.Name = "label9LowerLimitValue";
+            this.label9LowerLimitValue.Size = new System.Drawing.Size(25, 13);
+            this.label9LowerLimitValue.TabIndex = 23;
+            this.label9LowerLimitValue.Text = "128";
             // 
             // label9UpperLimit
             // 
@@ -890,24 +954,6 @@ namespace ComputerGraphics
             this.buttonRefreshPanel.UseVisualStyleBackColor = true;
             this.buttonRefreshPanel.Click += new System.EventHandler(this.buttonRefreshPanel_Click);
             // 
-            // label9LowerLimitValue
-            // 
-            this.label9LowerLimitValue.AutoSize = true;
-            this.label9LowerLimitValue.Location = new System.Drawing.Point(94, 265);
-            this.label9LowerLimitValue.Name = "label9LowerLimitValue";
-            this.label9LowerLimitValue.Size = new System.Drawing.Size(25, 13);
-            this.label9LowerLimitValue.TabIndex = 23;
-            this.label9LowerLimitValue.Text = "128";
-            // 
-            // label9UpperLimitValue
-            // 
-            this.label9UpperLimitValue.AutoSize = true;
-            this.label9UpperLimitValue.Location = new System.Drawing.Point(94, 329);
-            this.label9UpperLimitValue.Name = "label9UpperLimitValue";
-            this.label9UpperLimitValue.Size = new System.Drawing.Size(25, 13);
-            this.label9UpperLimitValue.TabIndex = 24;
-            this.label9UpperLimitValue.Text = "128";
-            // 
             // ComputerGraphics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -915,14 +961,15 @@ namespace ComputerGraphics
             this.ClientSize = new System.Drawing.Size(1100, 600);
             this.Controls.Add(this.buttonRefreshPanel);
             this.Controls.Add(this.tabControl);
-            this.Controls.Add(this.panel);
+            this.Controls.Add(this.panelHistogram);
+            this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.panelPixel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(1116, 638);
             this.MinimumSize = new System.Drawing.Size(1116, 638);
             this.Name = "ComputerGraphics";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Computer graphics";
-            this.panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -956,6 +1003,7 @@ namespace ComputerGraphics
             this.tabPage6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7ExploredImage)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8UntreatedImage)).EndInit();
@@ -970,7 +1018,7 @@ namespace ComputerGraphics
 
         #endregion
 
-        private Panel panel;
+        private Panel panelPixel;
         private NumericUpDown numericUpDown3Radius;
         private Label label3Radius;
         private GroupBox groupBox3Circle;
@@ -1039,5 +1087,9 @@ namespace ComputerGraphics
         private Label label9UpperLimit;
         private Label label9UpperLimitValue;
         private Label label9LowerLimitValue;
+        private Button button7BuildHistogram;
+        private Button button7ChooseImage;
+        private PictureBox pictureBox7ExploredImage;
+        private Panel panelHistogram;
     }
 }

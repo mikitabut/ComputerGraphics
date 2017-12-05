@@ -16,10 +16,14 @@ namespace ComputerGraphics
         public int panelWidth;
         public int panelHeight;
         public Point center;
-        public Graphics g;
+        public Graphics pixelGraphics;
+        public Graphics histogramGraphics;
         public Pen thinBlack = new Pen(Color.Black, 1);
-        public Pen thickBlack = new Pen(Color.Black, 4);
-        public Pen thinRed = new Pen(Color.Red, 2);
+        public Pen thickBlack = new Pen(Color.Black, 3);
+        public Pen thinRed = new Pen(Color.Red, 1);
+        public Pen thinGreen = new Pen(Color.Green, 1);
+        public Pen thinBlue = new Pen(Color.Blue, 1);
+        public Pen thinGray = new Pen(Color.Gray, 1);
         public SolidBrush blackBrush = new SolidBrush(Color.Gray);
         public int delayInMilliseconds = 100;
 
@@ -31,45 +35,51 @@ namespace ComputerGraphics
         public int b;
 
         public List<Point> borderPoints = new List<Point>();
+        
+        public List<int> redFrequencies;
+        public List<int> greenFrequencies;
+        public List<int> blueFrequencies;
+        public List<int> grayFrequencies;
 
         public delegate int BinarizationType(Color color, int lowerLimit = 0, int upperLimit = 0);
 
         public ComputerGraphics()
         {
             InitializeComponent();
-            panelWidth = panel.Width; //x
-            panelHeight = panel.Height; //y
+            panelWidth = panelPixel.Width; //x
+            panelHeight = panelPixel.Height; //y
             center = new Point(panelWidth / 2, panelHeight / 2);
-            g = panel.CreateGraphics();
+            pixelGraphics = panelPixel.CreateGraphics();
+            histogramGraphics = panelHistogram.CreateGraphics();
         }
 
         #endregion
 
         #region Main methods
 
-        private void panel_Paint(object sender, PaintEventArgs e)
+        private void panelPixel_Paint(object sender, PaintEventArgs e)
         {
-            for (int x = cellSize / 2; x < panelWidth; x += cellSize)
+            for(int x = cellSize / 2; x < panelWidth; x += cellSize)
             {
-                g.DrawLine(thinBlack, new Point(x, 0), new Point(x, 600));
+                pixelGraphics.DrawLine(thinBlack, new Point(x, 0), new Point(x, 600));
             }
-            for (int y = cellSize / 2; y < panelHeight; y += cellSize)
+            for(int y = cellSize / 2; y < panelHeight; y += cellSize)
             {
-                g.DrawLine(thinBlack, new Point(0, y), new Point(900, y));
+                pixelGraphics.DrawLine(thinBlack, new Point(0, y), new Point(900, y));
             }
-            g.DrawLine(thickBlack, new Point(center.X, 0), new Point(center.X, panelHeight));
-            g.DrawLine(thickBlack, new Point(0, center.Y), new Point(panelWidth, center.Y));
+            pixelGraphics.DrawLine(thickBlack, new Point(center.X, 0), new Point(center.X, panelHeight));
+            pixelGraphics.DrawLine(thickBlack, new Point(0, center.Y), new Point(panelWidth, center.Y));
         }
 
         private void buttonRefreshPanel_Click(object sender, EventArgs e)
         {
-            panel.Refresh();
+            panelPixel.Refresh();
             borderPoints.Clear();
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pictureBox.Visible = tabControl.SelectedIndex >= 5 ? true : false;
+            MakeCurrentPanelVisible();
             if(tabControl.SelectedIndex == 7)
             {
                 comboBox9BinarizationMethods.SelectedIndex = Constants.WithLowerLimit;
@@ -78,6 +88,13 @@ namespace ComputerGraphics
                     pictureBox9UntreatedImage.Image = pictureBox.Image;
                 }
             }
+        }
+
+        private void MakeCurrentPanelVisible()
+        {
+            panelPixel.Visible = tabControl.SelectedIndex <= 4 ? true : false;
+            panelHistogram.Visible = tabControl.SelectedIndex == 5 ? true : false;
+            pictureBox.Visible = tabControl.SelectedIndex >= 6 ? true : false;
         }
 
         #endregion
@@ -160,7 +177,7 @@ namespace ComputerGraphics
         {
             Point firstPixel = new Point(center.X + start.X * cellSize, center.Y - start.Y * cellSize);
             Point secondPixel = new Point(center.X + finish.X * cellSize, center.Y - finish.Y * cellSize);
-            g.DrawLine(thinRed, firstPixel, secondPixel);
+            pixelGraphics.DrawLine(thinRed, firstPixel, secondPixel);
         }
 
         #endregion
@@ -240,7 +257,7 @@ namespace ComputerGraphics
 
         private void DrawRealCircle()
         {
-            g.DrawEllipse(thinRed, center.X + (0 - radius) * cellSize, center.Y + (0 - radius) * cellSize, 2 * radius * cellSize, 2 * radius * cellSize);
+            pixelGraphics.DrawEllipse(thinRed, center.X + (0 - radius) * cellSize, center.Y + (0 - radius) * cellSize, 2 * radius * cellSize, 2 * radius * cellSize);
         }
 
         #endregion
@@ -345,7 +362,7 @@ namespace ComputerGraphics
 
         private void DrawRealEllipse()
         {
-            g.DrawEllipse(thinRed, center.X + (0 - a) * cellSize, center.Y + (0 - b) * cellSize, 2 * a * cellSize, 2 * b * cellSize);
+            pixelGraphics.DrawEllipse(thinRed, center.X + (0 - a) * cellSize, center.Y + (0 - b) * cellSize, 2 * a * cellSize, 2 * b * cellSize);
         }
 
         #endregion
@@ -447,7 +464,76 @@ namespace ComputerGraphics
 
         #region Seventh task - Building an image histogram
 
+        private void button7ChooseImage_Click(object sender, EventArgs e)
+        {
+            ChooseImageAndSetItInto(pictureBox7ExploredImage);
+        }
 
+        private void button7BuildHistogram_Click(object sender, EventArgs e)
+        {
+            ClearAllFrequencyLists();
+            CountingFrequencies();
+            NormalizeAllFrequencyLists();
+            BuildHistograms();
+        }
+
+        private void ClearAllFrequencyLists()
+        {
+            redFrequencies = Enumerable.Repeat(0, 256).ToList();
+            greenFrequencies = Enumerable.Repeat(0, 256).ToList();
+            blueFrequencies = Enumerable.Repeat(0, 256).ToList();
+            grayFrequencies = Enumerable.Repeat(0, 256).ToList();
+        }
+
+        private void CountingFrequencies()
+        {
+            Bitmap image = new Bitmap(pictureBox7ExploredImage.Image);
+            for(int y = 0; y < image.Height; y++)
+            {
+                for(int x = 0; x < image.Width; x++)
+                {
+                    Color color = image.GetPixel(x, y);
+                    redFrequencies[color.R]++;
+                    greenFrequencies[color.G]++;
+                    blueFrequencies[color.B]++;
+                    int grayShadow = (color.R + color.G + color.B) / 3;
+                    grayFrequencies[grayShadow]++;
+                }
+            }
+        }
+
+        private void NormalizeAllFrequencyLists()
+        {
+            NormalizeFrequencies(redFrequencies);
+            NormalizeFrequencies(greenFrequencies);
+            NormalizeFrequencies(blueFrequencies);
+            NormalizeFrequencies(grayFrequencies);
+        }
+
+        private void NormalizeFrequencies(List<int> frequencies)
+        {
+            double coefficient = 250.0 / frequencies.Max();
+            for(int i = 0; i < 256; i++)
+            {
+                frequencies[i] = (int)(Math.Round(frequencies[i] * coefficient));
+            }
+        }
+
+        private void BuildHistograms()
+        {
+            BuildHistogram(redFrequencies, thinRed, new Point(50, 280));
+            BuildHistogram(greenFrequencies, thinGreen, new Point(500, 280));
+            BuildHistogram(blueFrequencies, thinBlue, new Point(50, 580));
+            BuildHistogram(grayFrequencies, thinGray, new Point(500, 580));
+        }
+
+        private void BuildHistogram(List<int> frequencies, Pen pen, Point corner)
+        {
+            for(int i = 0; i < 256; i++)
+            {
+                histogramGraphics.DrawLine(pen, corner.X + i, corner.Y, corner.X + i, corner.Y - frequencies[i]);
+            }
+        }
 
         #endregion
 
@@ -654,7 +740,7 @@ namespace ComputerGraphics
         {
             int left = (int)(center.X + (point.X - 0.5) * cellSize);
             int top = (int)(center.Y - (point.Y + 0.5) * cellSize);
-            g.FillRectangle(blackBrush, left, top, cellSize, cellSize);
+            pixelGraphics.FillRectangle(blackBrush, left, top, cellSize, cellSize);
         }
 
         private void ChooseImageAndSetItInto(PictureBox pictureBox)
@@ -675,8 +761,10 @@ namespace ComputerGraphics
             }
         }
 
-        #endregion
 
-        
+
+
+
+        #endregion
     }
 }

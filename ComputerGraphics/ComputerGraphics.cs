@@ -682,13 +682,75 @@ namespace ComputerGraphics
 
         #endregion
 
-        #region Tenth task - Elimination of noise on a binary image
+        #region Tenth task - Noise elimination on a binary image
 
+        private void button10ChooseImage_Click(object sender, EventArgs e)
+        {
+            ChooseImageAndSetItInto(pictureBox10UntreatedImage);
+        }
 
+        private void button10SaveImage_Click(object sender, EventArgs e)
+        {
+            SaveCurrentImage();
+        }
+
+        private void trackBar10Probability_Scroll(object sender, EventArgs e)
+        {
+            label10ProbabilityValue.Text = $"{trackBar10Probability.Value.ToString()} %";
+        }
+
+        private void button10AddNoise_Click(object sender, EventArgs e)
+        {
+            int probabilityInPercentage = trackBar10Probability.Value;
+            if(radioButton10SaltAndPepperNoise.Checked)
+            {
+                AddSaltAndPepperNoise(probabilityInPercentage);
+            }
+            else if(radioButton10ImpulseNoise.Checked)
+            {
+                AddImpulseNoise(probabilityInPercentage);
+            }
+        }
+
+        private void AddSaltAndPepperNoise(double probabilityInPercentage)
+        {
+            Bitmap image = new Bitmap(pictureBox10UntreatedImage.Image);
+            Random random = new Random();
+            for(int y = 0; y < image.Height; y++)
+            {
+                for(int x = 0; x < image.Width; x++)
+                {
+                    int oldColor = image.GetPixel(x, y).R;
+                    int newColor = random.Next(100) < probabilityInPercentage ? GetInverseColor(oldColor) : oldColor;
+                    image.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
+                }
+            }
+            pictureBox.Image = image;
+        }
+
+        private int GetInverseColor(int color)
+        {
+            return color == 0 ? 255 : 0;
+        }
+
+        private void AddImpulseNoise(double probabilityInPercentage)
+        {
+            Bitmap image = new Bitmap(pictureBox10UntreatedImage.Image);
+            Random random = new Random();
+            for(int y = 0; y < image.Height; y++)
+            {
+                for(int x = 0; x < image.Width; x++)
+                {
+                    int newColor = random.Next(100) < probabilityInPercentage ? 255 : image.GetPixel(x, y).R;
+                    image.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
+                }
+            }
+            pictureBox.Image = image;
+        }
 
         #endregion
 
-        #region Eleventh task - Elimination of noise on a halftone image
+        #region Eleventh task - Noise elimination on a halftone image
 
 
 
@@ -765,6 +827,10 @@ namespace ComputerGraphics
 
 
 
+
+
+
         #endregion
+
     }
 }

@@ -99,6 +99,20 @@ namespace ComputerGraphics
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox9UntreatedImage = new System.Windows.Forms.PictureBox();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.tabControl10 = new System.Windows.Forms.TabControl();
+            this.tabPage10AddingNoise = new System.Windows.Forms.TabPage();
+            this.button10AddNoise = new System.Windows.Forms.Button();
+            this.label10ProbabilityValue = new System.Windows.Forms.Label();
+            this.label10Probability = new System.Windows.Forms.Label();
+            this.trackBar10Probability = new System.Windows.Forms.TrackBar();
+            this.groupBox10NoiseType = new System.Windows.Forms.GroupBox();
+            this.radioButton10ImpulseNoise = new System.Windows.Forms.RadioButton();
+            this.radioButton10SaltAndPepperNoise = new System.Windows.Forms.RadioButton();
+            this.tabPage10RemovingNoise = new System.Windows.Forms.TabPage();
+            this.button10SaveImage = new System.Windows.Forms.Button();
+            this.button10ChooseImage = new System.Windows.Forms.Button();
+            this.pictureBox10UntreatedImage = new System.Windows.Forms.PictureBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.tabPage13 = new System.Windows.Forms.TabPage();
@@ -134,6 +148,12 @@ namespace ComputerGraphics
             ((System.ComponentModel.ISupportInitialize)(this.trackBar9UpperLimit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar9LowerLimit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9UntreatedImage)).BeginInit();
+            this.tabPage10.SuspendLayout();
+            this.tabControl10.SuspendLayout();
+            this.tabPage10AddingNoise.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar10Probability)).BeginInit();
+            this.groupBox10NoiseType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10UntreatedImage)).BeginInit();
             this.SuspendLayout();
             // 
             // panelPixel
@@ -187,7 +207,7 @@ namespace ComputerGraphics
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(195, 493);
+            this.tabControl.Size = new System.Drawing.Size(195, 530);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 11;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
@@ -201,7 +221,7 @@ namespace ComputerGraphics
             this.tabPage2.Location = new System.Drawing.Point(4, 40);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(187, 449);
+            this.tabPage2.Size = new System.Drawing.Size(187, 486);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -350,7 +370,7 @@ namespace ComputerGraphics
             this.tabPage3.Location = new System.Drawing.Point(4, 40);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(187, 449);
+            this.tabPage3.Size = new System.Drawing.Size(187, 486);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -489,7 +509,7 @@ namespace ComputerGraphics
             this.tabPage4.Location = new System.Drawing.Point(4, 40);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(187, 449);
+            this.tabPage4.Size = new System.Drawing.Size(187, 486);
             this.tabPage4.TabIndex = 2;
             this.tabPage4.Text = "4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -587,7 +607,7 @@ namespace ComputerGraphics
             this.tabPage5.Location = new System.Drawing.Point(4, 40);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(187, 449);
+            this.tabPage5.Size = new System.Drawing.Size(187, 486);
             this.tabPage5.TabIndex = 3;
             this.tabPage5.Text = "5";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -607,7 +627,7 @@ namespace ComputerGraphics
             this.tabPage6.Location = new System.Drawing.Point(4, 40);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(187, 449);
+            this.tabPage6.Size = new System.Drawing.Size(187, 486);
             this.tabPage6.TabIndex = 4;
             this.tabPage6.Text = "6";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -630,7 +650,7 @@ namespace ComputerGraphics
             this.tabPage7.Location = new System.Drawing.Point(4, 40);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(187, 449);
+            this.tabPage7.Size = new System.Drawing.Size(187, 486);
             this.tabPage7.TabIndex = 5;
             this.tabPage7.Text = "7";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -684,7 +704,7 @@ namespace ComputerGraphics
             this.tabPage8.Location = new System.Drawing.Point(4, 40);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(187, 449);
+            this.tabPage8.Size = new System.Drawing.Size(187, 486);
             this.tabPage8.TabIndex = 6;
             this.tabPage8.Text = "8";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -755,7 +775,7 @@ namespace ComputerGraphics
             this.tabPage9.Location = new System.Drawing.Point(4, 40);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(187, 449);
+            this.tabPage9.Size = new System.Drawing.Size(187, 486);
             this.tabPage9.TabIndex = 7;
             this.tabPage9.Text = "9";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -886,20 +906,173 @@ namespace ComputerGraphics
             // 
             // tabPage10
             // 
+            this.tabPage10.Controls.Add(this.tabControl10);
+            this.tabPage10.Controls.Add(this.button10SaveImage);
+            this.tabPage10.Controls.Add(this.button10ChooseImage);
+            this.tabPage10.Controls.Add(this.pictureBox10UntreatedImage);
+            this.tabPage10.Controls.Add(this.label10);
             this.tabPage10.Location = new System.Drawing.Point(4, 40);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(187, 449);
+            this.tabPage10.Size = new System.Drawing.Size(187, 486);
             this.tabPage10.TabIndex = 8;
             this.tabPage10.Text = "10";
             this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // tabControl10
+            // 
+            this.tabControl10.Controls.Add(this.tabPage10AddingNoise);
+            this.tabControl10.Controls.Add(this.tabPage10RemovingNoise);
+            this.tabControl10.Location = new System.Drawing.Point(7, 227);
+            this.tabControl10.Name = "tabControl10";
+            this.tabControl10.SelectedIndex = 0;
+            this.tabControl10.Size = new System.Drawing.Size(173, 253);
+            this.tabControl10.TabIndex = 19;
+            // 
+            // tabPage10AddingNoise
+            // 
+            this.tabPage10AddingNoise.Controls.Add(this.button10AddNoise);
+            this.tabPage10AddingNoise.Controls.Add(this.label10ProbabilityValue);
+            this.tabPage10AddingNoise.Controls.Add(this.label10Probability);
+            this.tabPage10AddingNoise.Controls.Add(this.trackBar10Probability);
+            this.tabPage10AddingNoise.Controls.Add(this.groupBox10NoiseType);
+            this.tabPage10AddingNoise.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10AddingNoise.Name = "tabPage10AddingNoise";
+            this.tabPage10AddingNoise.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage10AddingNoise.Size = new System.Drawing.Size(165, 227);
+            this.tabPage10AddingNoise.TabIndex = 0;
+            this.tabPage10AddingNoise.Text = "Add noise";
+            this.tabPage10AddingNoise.UseVisualStyleBackColor = true;
+            // 
+            // button10AddNoise
+            // 
+            this.button10AddNoise.Location = new System.Drawing.Point(6, 183);
+            this.button10AddNoise.Name = "button10AddNoise";
+            this.button10AddNoise.Size = new System.Drawing.Size(153, 38);
+            this.button10AddNoise.TabIndex = 23;
+            this.button10AddNoise.Text = "Add";
+            this.button10AddNoise.UseVisualStyleBackColor = true;
+            this.button10AddNoise.Click += new System.EventHandler(this.button10AddNoise_Click);
+            // 
+            // label10ProbabilityValue
+            // 
+            this.label10ProbabilityValue.AutoSize = true;
+            this.label10ProbabilityValue.Location = new System.Drawing.Point(95, 90);
+            this.label10ProbabilityValue.Name = "label10ProbabilityValue";
+            this.label10ProbabilityValue.Size = new System.Drawing.Size(30, 13);
+            this.label10ProbabilityValue.TabIndex = 22;
+            this.label10ProbabilityValue.Text = "25 %";
+            // 
+            // label10Probability
+            // 
+            this.label10Probability.AutoSize = true;
+            this.label10Probability.Location = new System.Drawing.Point(36, 90);
+            this.label10Probability.Name = "label10Probability";
+            this.label10Probability.Size = new System.Drawing.Size(61, 13);
+            this.label10Probability.TabIndex = 21;
+            this.label10Probability.Text = "Probability :";
+            // 
+            // trackBar10Probability
+            // 
+            this.trackBar10Probability.Location = new System.Drawing.Point(6, 109);
+            this.trackBar10Probability.Maximum = 50;
+            this.trackBar10Probability.Name = "trackBar10Probability";
+            this.trackBar10Probability.Size = new System.Drawing.Size(153, 45);
+            this.trackBar10Probability.SmallChange = 2;
+            this.trackBar10Probability.TabIndex = 20;
+            this.trackBar10Probability.TickFrequency = 5;
+            this.trackBar10Probability.Value = 25;
+            this.trackBar10Probability.Scroll += new System.EventHandler(this.trackBar10Probability_Scroll);
+            // 
+            // groupBox10NoiseType
+            // 
+            this.groupBox10NoiseType.Controls.Add(this.radioButton10ImpulseNoise);
+            this.groupBox10NoiseType.Controls.Add(this.radioButton10SaltAndPepperNoise);
+            this.groupBox10NoiseType.Location = new System.Drawing.Point(6, 6);
+            this.groupBox10NoiseType.Name = "groupBox10NoiseType";
+            this.groupBox10NoiseType.Size = new System.Drawing.Size(153, 71);
+            this.groupBox10NoiseType.TabIndex = 0;
+            this.groupBox10NoiseType.TabStop = false;
+            this.groupBox10NoiseType.Text = "Noise type";
+            // 
+            // radioButton10ImpulseNoise
+            // 
+            this.radioButton10ImpulseNoise.AutoSize = true;
+            this.radioButton10ImpulseNoise.Location = new System.Drawing.Point(7, 42);
+            this.radioButton10ImpulseNoise.Name = "radioButton10ImpulseNoise";
+            this.radioButton10ImpulseNoise.Size = new System.Drawing.Size(61, 17);
+            this.radioButton10ImpulseNoise.TabIndex = 1;
+            this.radioButton10ImpulseNoise.TabStop = true;
+            this.radioButton10ImpulseNoise.Text = "Impulse";
+            this.radioButton10ImpulseNoise.UseVisualStyleBackColor = true;
+            // 
+            // radioButton10SaltAndPepperNoise
+            // 
+            this.radioButton10SaltAndPepperNoise.AutoSize = true;
+            this.radioButton10SaltAndPepperNoise.Checked = true;
+            this.radioButton10SaltAndPepperNoise.Location = new System.Drawing.Point(7, 19);
+            this.radioButton10SaltAndPepperNoise.Name = "radioButton10SaltAndPepperNoise";
+            this.radioButton10SaltAndPepperNoise.Size = new System.Drawing.Size(100, 17);
+            this.radioButton10SaltAndPepperNoise.TabIndex = 0;
+            this.radioButton10SaltAndPepperNoise.TabStop = true;
+            this.radioButton10SaltAndPepperNoise.Text = "Salt and pepper";
+            this.radioButton10SaltAndPepperNoise.UseVisualStyleBackColor = true;
+            // 
+            // tabPage10RemovingNoise
+            // 
+            this.tabPage10RemovingNoise.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10RemovingNoise.Name = "tabPage10RemovingNoise";
+            this.tabPage10RemovingNoise.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage10RemovingNoise.Size = new System.Drawing.Size(165, 227);
+            this.tabPage10RemovingNoise.TabIndex = 1;
+            this.tabPage10RemovingNoise.Text = "Remove noise";
+            this.tabPage10RemovingNoise.UseVisualStyleBackColor = true;
+            // 
+            // button10SaveImage
+            // 
+            this.button10SaveImage.Location = new System.Drawing.Point(96, 190);
+            this.button10SaveImage.Name = "button10SaveImage";
+            this.button10SaveImage.Size = new System.Drawing.Size(84, 30);
+            this.button10SaveImage.TabIndex = 18;
+            this.button10SaveImage.Text = "Save";
+            this.button10SaveImage.UseVisualStyleBackColor = true;
+            this.button10SaveImage.Click += new System.EventHandler(this.button10SaveImage_Click);
+            // 
+            // button10ChooseImage
+            // 
+            this.button10ChooseImage.Location = new System.Drawing.Point(5, 190);
+            this.button10ChooseImage.Name = "button10ChooseImage";
+            this.button10ChooseImage.Size = new System.Drawing.Size(84, 30);
+            this.button10ChooseImage.TabIndex = 17;
+            this.button10ChooseImage.Text = "Choose image";
+            this.button10ChooseImage.UseVisualStyleBackColor = true;
+            this.button10ChooseImage.Click += new System.EventHandler(this.button10ChooseImage_Click);
+            // 
+            // pictureBox10UntreatedImage
+            // 
+            this.pictureBox10UntreatedImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox10UntreatedImage.Location = new System.Drawing.Point(5, 19);
+            this.pictureBox10UntreatedImage.Name = "pictureBox10UntreatedImage";
+            this.pictureBox10UntreatedImage.Size = new System.Drawing.Size(175, 165);
+            this.pictureBox10UntreatedImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox10UntreatedImage.TabIndex = 16;
+            this.pictureBox10UntreatedImage.TabStop = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(9, 3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(172, 13);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "Noise elimination on a binary image";
             // 
             // tabPage11
             // 
             this.tabPage11.Location = new System.Drawing.Point(4, 40);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(187, 449);
+            this.tabPage11.Size = new System.Drawing.Size(187, 486);
             this.tabPage11.TabIndex = 9;
             this.tabPage11.Text = "11";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -909,7 +1082,7 @@ namespace ComputerGraphics
             this.tabPage12.Location = new System.Drawing.Point(4, 40);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(187, 449);
+            this.tabPage12.Size = new System.Drawing.Size(187, 486);
             this.tabPage12.TabIndex = 10;
             this.tabPage12.Text = "12";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -919,7 +1092,7 @@ namespace ComputerGraphics
             this.tabPage13.Location = new System.Drawing.Point(4, 40);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage13.Size = new System.Drawing.Size(187, 449);
+            this.tabPage13.Size = new System.Drawing.Size(187, 486);
             this.tabPage13.TabIndex = 11;
             this.tabPage13.Text = "13";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -929,7 +1102,7 @@ namespace ComputerGraphics
             this.tabPage14.Location = new System.Drawing.Point(4, 40);
             this.tabPage14.Name = "tabPage14";
             this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage14.Size = new System.Drawing.Size(187, 449);
+            this.tabPage14.Size = new System.Drawing.Size(187, 486);
             this.tabPage14.TabIndex = 12;
             this.tabPage14.Text = "14";
             this.tabPage14.UseVisualStyleBackColor = true;
@@ -939,16 +1112,17 @@ namespace ComputerGraphics
             this.tabPage15.Location = new System.Drawing.Point(4, 40);
             this.tabPage15.Name = "tabPage15";
             this.tabPage15.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage15.Size = new System.Drawing.Size(187, 449);
+            this.tabPage15.Size = new System.Drawing.Size(187, 486);
             this.tabPage15.TabIndex = 13;
             this.tabPage15.Text = "15";
             this.tabPage15.UseVisualStyleBackColor = true;
             // 
             // buttonRefreshPanel
             // 
-            this.buttonRefreshPanel.Location = new System.Drawing.Point(972, 565);
+            this.buttonRefreshPanel.Location = new System.Drawing.Point(945, 555);
+            this.buttonRefreshPanel.Margin = new System.Windows.Forms.Padding(1);
             this.buttonRefreshPanel.Name = "buttonRefreshPanel";
-            this.buttonRefreshPanel.Size = new System.Drawing.Size(75, 23);
+            this.buttonRefreshPanel.Size = new System.Drawing.Size(108, 35);
             this.buttonRefreshPanel.TabIndex = 12;
             this.buttonRefreshPanel.Text = "Refresh panel";
             this.buttonRefreshPanel.UseVisualStyleBackColor = true;
@@ -1012,6 +1186,15 @@ namespace ComputerGraphics
             ((System.ComponentModel.ISupportInitialize)(this.trackBar9UpperLimit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar9LowerLimit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9UntreatedImage)).EndInit();
+            this.tabPage10.ResumeLayout(false);
+            this.tabPage10.PerformLayout();
+            this.tabControl10.ResumeLayout(false);
+            this.tabPage10AddingNoise.ResumeLayout(false);
+            this.tabPage10AddingNoise.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar10Probability)).EndInit();
+            this.groupBox10NoiseType.ResumeLayout(false);
+            this.groupBox10NoiseType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10UntreatedImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1091,5 +1274,19 @@ namespace ComputerGraphics
         private Button button7ChooseImage;
         private PictureBox pictureBox7ExploredImage;
         private Panel panelHistogram;
+        private Label label10;
+        private Button button10SaveImage;
+        private Button button10ChooseImage;
+        private PictureBox pictureBox10UntreatedImage;
+        private TabControl tabControl10;
+        private TabPage tabPage10AddingNoise;
+        private TabPage tabPage10RemovingNoise;
+        private GroupBox groupBox10NoiseType;
+        private RadioButton radioButton10ImpulseNoise;
+        private RadioButton radioButton10SaltAndPepperNoise;
+        private Label label10ProbabilityValue;
+        private Label label10Probability;
+        private TrackBar trackBar10Probability;
+        private Button button10AddNoise;
     }
 }

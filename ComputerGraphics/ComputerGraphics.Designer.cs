@@ -120,7 +120,6 @@ namespace ComputerGraphics
             this.button10ChooseImage = new System.Windows.Forms.Button();
             this.pictureBox10UntreatedImage = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.tabPage13 = new System.Windows.Forms.TabPage();
             this.tabPage14 = new System.Windows.Forms.TabPage();
@@ -206,12 +205,11 @@ namespace ComputerGraphics
             this.tabControl.Controls.Add(this.tabPage8);
             this.tabControl.Controls.Add(this.tabPage9);
             this.tabControl.Controls.Add(this.tabPage10);
-            this.tabControl.Controls.Add(this.tabPage11);
             this.tabControl.Controls.Add(this.tabPage12);
             this.tabControl.Controls.Add(this.tabPage13);
             this.tabControl.Controls.Add(this.tabPage14);
             this.tabControl.Controls.Add(this.tabPage15);
-            this.tabControl.ItemSize = new System.Drawing.Size(26, 18);
+            this.tabControl.ItemSize = new System.Drawing.Size(27, 20);
             this.tabControl.Location = new System.Drawing.Point(904, 0);
             this.tabControl.Margin = new System.Windows.Forms.Padding(1);
             this.tabControl.Multiline = true;
@@ -921,12 +919,12 @@ namespace ComputerGraphics
             this.tabPage10.Controls.Add(this.button10ChooseImage);
             this.tabPage10.Controls.Add(this.pictureBox10UntreatedImage);
             this.tabPage10.Controls.Add(this.label10);
-            this.tabPage10.Location = new System.Drawing.Point(4, 40);
+            this.tabPage10.Location = new System.Drawing.Point(4, 44);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(187, 486);
+            this.tabPage10.Size = new System.Drawing.Size(187, 482);
             this.tabPage10.TabIndex = 8;
-            this.tabPage10.Text = "10";
+            this.tabPage10.Text = "10&11";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
             // tabControl10
@@ -1150,21 +1148,11 @@ namespace ComputerGraphics
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(9, 3);
+            this.label10.Location = new System.Drawing.Point(47, 3);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(172, 13);
+            this.label10.Size = new System.Drawing.Size(86, 13);
             this.label10.TabIndex = 15;
-            this.label10.Text = "Noise elimination on a binary image";
-            // 
-            // tabPage11
-            // 
-            this.tabPage11.Location = new System.Drawing.Point(4, 40);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(187, 486);
-            this.tabPage11.TabIndex = 9;
-            this.tabPage11.Text = "11";
-            this.tabPage11.UseVisualStyleBackColor = true;
+            this.label10.Text = "Noise elimination";
             // 
             // tabPage12
             // 
@@ -1316,7 +1304,6 @@ namespace ComputerGraphics
         private TabPage tabPage8;
         private TabPage tabPage9;
         private TabPage tabPage10;
-        private TabPage tabPage11;
         private TabPage tabPage12;
         private TabPage tabPage13;
         private TabPage tabPage14;

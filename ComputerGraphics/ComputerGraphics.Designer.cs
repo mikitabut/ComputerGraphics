@@ -109,6 +109,13 @@ namespace ComputerGraphics
             this.radioButton10ImpulseNoise = new System.Windows.Forms.RadioButton();
             this.radioButton10SaltAndPepperNoise = new System.Windows.Forms.RadioButton();
             this.tabPage10RemovingNoise = new System.Windows.Forms.TabPage();
+            this.label10NeighbourhoodSizeValue = new System.Windows.Forms.Label();
+            this.label10NeighbourhoodSize = new System.Windows.Forms.Label();
+            this.trackBar10NeighbourhoodSize = new System.Windows.Forms.TrackBar();
+            this.button10RemoveNoise = new System.Windows.Forms.Button();
+            this.groupBox10FilterType = new System.Windows.Forms.GroupBox();
+            this.radioButton10MedianFilter = new System.Windows.Forms.RadioButton();
+            this.radioButton10LogicalFilter = new System.Windows.Forms.RadioButton();
             this.button10SaveImage = new System.Windows.Forms.Button();
             this.button10ChooseImage = new System.Windows.Forms.Button();
             this.pictureBox10UntreatedImage = new System.Windows.Forms.PictureBox();
@@ -153,6 +160,9 @@ namespace ComputerGraphics
             this.tabPage10AddingNoise.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar10Probability)).BeginInit();
             this.groupBox10NoiseType.SuspendLayout();
+            this.tabPage10RemovingNoise.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar10NeighbourhoodSize)).BeginInit();
+            this.groupBox10FilterType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10UntreatedImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1020,6 +1030,11 @@ namespace ComputerGraphics
             // 
             // tabPage10RemovingNoise
             // 
+            this.tabPage10RemovingNoise.Controls.Add(this.label10NeighbourhoodSizeValue);
+            this.tabPage10RemovingNoise.Controls.Add(this.label10NeighbourhoodSize);
+            this.tabPage10RemovingNoise.Controls.Add(this.trackBar10NeighbourhoodSize);
+            this.tabPage10RemovingNoise.Controls.Add(this.button10RemoveNoise);
+            this.tabPage10RemovingNoise.Controls.Add(this.groupBox10FilterType);
             this.tabPage10RemovingNoise.Location = new System.Drawing.Point(4, 22);
             this.tabPage10RemovingNoise.Name = "tabPage10RemovingNoise";
             this.tabPage10RemovingNoise.Padding = new System.Windows.Forms.Padding(3);
@@ -1027,6 +1042,80 @@ namespace ComputerGraphics
             this.tabPage10RemovingNoise.TabIndex = 1;
             this.tabPage10RemovingNoise.Text = "Remove noise";
             this.tabPage10RemovingNoise.UseVisualStyleBackColor = true;
+            // 
+            // label10NeighbourhoodSizeValue
+            // 
+            this.label10NeighbourhoodSizeValue.AutoSize = true;
+            this.label10NeighbourhoodSizeValue.Location = new System.Drawing.Point(115, 90);
+            this.label10NeighbourhoodSizeValue.Name = "label10NeighbourhoodSizeValue";
+            this.label10NeighbourhoodSizeValue.Size = new System.Drawing.Size(30, 13);
+            this.label10NeighbourhoodSizeValue.TabIndex = 27;
+            this.label10NeighbourhoodSizeValue.Text = "3 x 3";
+            // 
+            // label10NeighbourhoodSize
+            // 
+            this.label10NeighbourhoodSize.AutoSize = true;
+            this.label10NeighbourhoodSize.Location = new System.Drawing.Point(10, 90);
+            this.label10NeighbourhoodSize.Name = "label10NeighbourhoodSize";
+            this.label10NeighbourhoodSize.Size = new System.Drawing.Size(107, 13);
+            this.label10NeighbourhoodSize.TabIndex = 26;
+            this.label10NeighbourhoodSize.Text = "Neighbourhood size :";
+            // 
+            // trackBar10NeighbourhoodSize
+            // 
+            this.trackBar10NeighbourhoodSize.LargeChange = 1;
+            this.trackBar10NeighbourhoodSize.Location = new System.Drawing.Point(6, 109);
+            this.trackBar10NeighbourhoodSize.Maximum = 7;
+            this.trackBar10NeighbourhoodSize.Minimum = 1;
+            this.trackBar10NeighbourhoodSize.Name = "trackBar10NeighbourhoodSize";
+            this.trackBar10NeighbourhoodSize.Size = new System.Drawing.Size(153, 45);
+            this.trackBar10NeighbourhoodSize.TabIndex = 25;
+            this.trackBar10NeighbourhoodSize.Value = 1;
+            this.trackBar10NeighbourhoodSize.Scroll += new System.EventHandler(this.trackBar10NeighbourhoodSize_Scroll);
+            // 
+            // button10RemoveNoise
+            // 
+            this.button10RemoveNoise.Location = new System.Drawing.Point(6, 183);
+            this.button10RemoveNoise.Name = "button10RemoveNoise";
+            this.button10RemoveNoise.Size = new System.Drawing.Size(153, 38);
+            this.button10RemoveNoise.TabIndex = 24;
+            this.button10RemoveNoise.Text = "Remove";
+            this.button10RemoveNoise.UseVisualStyleBackColor = true;
+            this.button10RemoveNoise.Click += new System.EventHandler(this.button10RemoveNoise_Click);
+            // 
+            // groupBox10FilterType
+            // 
+            this.groupBox10FilterType.Controls.Add(this.radioButton10MedianFilter);
+            this.groupBox10FilterType.Controls.Add(this.radioButton10LogicalFilter);
+            this.groupBox10FilterType.Location = new System.Drawing.Point(6, 6);
+            this.groupBox10FilterType.Name = "groupBox10FilterType";
+            this.groupBox10FilterType.Size = new System.Drawing.Size(153, 71);
+            this.groupBox10FilterType.TabIndex = 1;
+            this.groupBox10FilterType.TabStop = false;
+            this.groupBox10FilterType.Text = "Filter type";
+            // 
+            // radioButton10MedianFilter
+            // 
+            this.radioButton10MedianFilter.AutoSize = true;
+            this.radioButton10MedianFilter.Location = new System.Drawing.Point(7, 42);
+            this.radioButton10MedianFilter.Name = "radioButton10MedianFilter";
+            this.radioButton10MedianFilter.Size = new System.Drawing.Size(60, 17);
+            this.radioButton10MedianFilter.TabIndex = 1;
+            this.radioButton10MedianFilter.TabStop = true;
+            this.radioButton10MedianFilter.Text = "Median";
+            this.radioButton10MedianFilter.UseVisualStyleBackColor = true;
+            // 
+            // radioButton10LogicalFilter
+            // 
+            this.radioButton10LogicalFilter.AutoSize = true;
+            this.radioButton10LogicalFilter.Checked = true;
+            this.radioButton10LogicalFilter.Location = new System.Drawing.Point(7, 19);
+            this.radioButton10LogicalFilter.Name = "radioButton10LogicalFilter";
+            this.radioButton10LogicalFilter.Size = new System.Drawing.Size(59, 17);
+            this.radioButton10LogicalFilter.TabIndex = 0;
+            this.radioButton10LogicalFilter.TabStop = true;
+            this.radioButton10LogicalFilter.Text = "Logical";
+            this.radioButton10LogicalFilter.UseVisualStyleBackColor = true;
             // 
             // button10SaveImage
             // 
@@ -1194,6 +1283,11 @@ namespace ComputerGraphics
             ((System.ComponentModel.ISupportInitialize)(this.trackBar10Probability)).EndInit();
             this.groupBox10NoiseType.ResumeLayout(false);
             this.groupBox10NoiseType.PerformLayout();
+            this.tabPage10RemovingNoise.ResumeLayout(false);
+            this.tabPage10RemovingNoise.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar10NeighbourhoodSize)).EndInit();
+            this.groupBox10FilterType.ResumeLayout(false);
+            this.groupBox10FilterType.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10UntreatedImage)).EndInit();
             this.ResumeLayout(false);
 
@@ -1288,5 +1382,12 @@ namespace ComputerGraphics
         private Label label10Probability;
         private TrackBar trackBar10Probability;
         private Button button10AddNoise;
+        private Label label10NeighbourhoodSizeValue;
+        private Label label10NeighbourhoodSize;
+        private TrackBar trackBar10NeighbourhoodSize;
+        private Button button10RemoveNoise;
+        private GroupBox groupBox10FilterType;
+        private RadioButton radioButton10MedianFilter;
+        private RadioButton radioButton10LogicalFilter;
     }
 }

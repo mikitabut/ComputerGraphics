@@ -43,6 +43,9 @@ namespace ComputerGraphics
 
         public delegate int BinarizationType(Color color, int lowerLimit = 0, int upperLimit = 0);
 
+        public Bitmap image;
+        public int sidePixelsAmount = 1;
+
         public ComputerGraphics()
         {
             InitializeComponent();
@@ -487,7 +490,6 @@ namespace ComputerGraphics
 
         private void CountingFrequencies()
         {
-            Bitmap image = new Bitmap(pictureBox7ExploredImage.Image);
             for(int y = 0; y < image.Height; y++)
             {
                 for(int x = 0; x < image.Width; x++)
@@ -551,7 +553,6 @@ namespace ComputerGraphics
 
         private void buttonConvertingToHalftone_Click(object sender, EventArgs e)
         {
-            Bitmap image = new Bitmap(pictureBox8UntreatedImage.Image);
             for(int y = 0; y < image.Height; y++) 
             {
                 for(int x = 0; x < image.Width; x++)
@@ -610,7 +611,6 @@ namespace ComputerGraphics
         {
             int lowerLimit = trackBar9LowerLimit.Value;
             int upperLimit = trackBar9UpperLimit.Value;
-            Bitmap image = new Bitmap(pictureBox9UntreatedImage.Image);
             for(int y = 0; y < image.Height; y++)
             {
                 for(int x = 0; x < image.Width; x++)
@@ -714,7 +714,6 @@ namespace ComputerGraphics
 
         private void AddSaltAndPepperNoise(double probabilityInPercentage)
         {
-            Bitmap image = new Bitmap(pictureBox10UntreatedImage.Image);
             Random random = new Random();
             for(int y = 0; y < image.Height; y++)
             {
@@ -735,7 +734,6 @@ namespace ComputerGraphics
 
         private void AddImpulseNoise(double probabilityInPercentage)
         {
-            Bitmap image = new Bitmap(pictureBox10UntreatedImage.Image);
             Random random = new Random();
             for(int y = 0; y < image.Height; y++)
             {
@@ -746,6 +744,79 @@ namespace ComputerGraphics
                 }
             }
             pictureBox.Image = image;
+        }
+
+        private void trackBar10NeighbourhoodSize_Scroll(object sender, EventArgs e)
+        {
+            sidePixelsAmount = trackBar10NeighbourhoodSize.Value;
+            string size = (2 * sidePixelsAmount + 1).ToString();
+            label10NeighbourhoodSizeValue.Text = $"{size} x {size}";
+        }
+
+        private void button10RemoveNoise_Click(object sender, EventArgs e)
+        {
+            if(radioButton10LogicalFilter.Checked)
+            {
+                RemoveNoiseByLogicalFilter();
+            }
+            else if(radioButton10MedianFilter.Checked)
+            {
+                RemoveNoiseByMedianFilter();
+            }
+        }
+
+        private void RemoveNoiseByLogicalFilter()
+        {
+            for(int y = 0; y < image.Height; y++)
+            {
+                for(int x = 0; x < image.Width; x++)
+                {
+                    List<int> neighbourhoodColors = GetNeighboursColors(x, y).ToList();
+                    int inversedColor = GetInverseColor(image.GetPixel(x, y).R);
+                    if(neighbourhoodColors.All(t => t == inversedColor))
+                    {
+                        image.SetPixel(x, y, Color.FromArgb(inversedColor, inversedColor, inversedColor));
+                    }
+                }
+            }
+            pictureBox.Image = image;
+        }
+
+        private void RemoveNoiseByMedianFilter()
+        {
+            for(int y = 0; y < image.Height; y++)
+            {
+                for(int x = 0; x < image.Width; x++)
+                {
+                    List<int> neighbourhoodColors = GetNeighboursColors(x, y).ToList();
+                    if(IsEven(neighbourhoodColors.Count))
+                    {
+                        neighbourhoodColors.Add(image.GetPixel(x, y).R);
+                    }
+                    neighbourhoodColors.Sort();
+                    int newColor = neighbourhoodColors[neighbourhoodColors.Count / 2];
+                    image.SetPixel(x, y, Color.FromArgb(newColor, newColor, newColor));
+                }
+            }
+            pictureBox.Image = image;
+        }
+
+        private IEnumerable<int> GetNeighboursColors(int x, int y)
+        {
+            int xStart = x < sidePixelsAmount ? 0 : x - sidePixelsAmount;
+            int yStart = y < sidePixelsAmount ? 0 : y - sidePixelsAmount;
+            int xFinish = x + sidePixelsAmount >= image.Width ? image.Width - 1 : x + sidePixelsAmount;
+            int yFinish = y + sidePixelsAmount >= image.Height ? image.Height - 1 : y + sidePixelsAmount;
+            for(int i = yStart; i <= yFinish; i++)
+            {
+                for(int j = xStart; j <= xFinish; j++)
+                {
+                    if(i != y || j != x)
+                    {
+                        yield return image.GetPixel(j, i).R;
+                    }
+                }
+            }
         }
 
         #endregion
@@ -805,12 +876,14 @@ namespace ComputerGraphics
             pixelGraphics.FillRectangle(blackBrush, left, top, cellSize, cellSize);
         }
 
-        private void ChooseImageAndSetItInto(PictureBox pictureBox)
+        private void ChooseImageAndSetItInto(PictureBox currentPictureBox)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                currentPictureBox.Image = Image.FromFile(openFileDialog.FileName);
                 pictureBox.Image = Image.FromFile(openFileDialog.FileName);
+                image = new Bitmap(pictureBox.Image);
             }
         }
 
@@ -823,14 +896,13 @@ namespace ComputerGraphics
             }
         }
 
-
-
-
-
-
-
+        private bool IsEven(int x)
+        {
+            return x % 2 == 0;
+        }
 
         #endregion
+
 
     }
 }
